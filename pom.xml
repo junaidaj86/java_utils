@@ -3,10 +3,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"
          xmlns="http://maven.apache.org/POM/4.0.0">
     <modelVersion>4.0.0</modelVersion>
+
     <groupId>com.postnord.ndm</groupId>
     <artifactId>base</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Base modules</name>
+
     <packaging>pom</packaging>
 
     <properties>
@@ -18,17 +20,10 @@
     </properties>
 
     <modules>
-        <module>app_compile_root</module>
-        <module>chassis</module>
-        <module>common_utils</module>
-        <module>exception</module>
-        <module>health</module>
-        <module>logger</module>
-        <module>lib_compile_root</module>
-        <module>openapi</module>
-        <module>problem</module>
-        <module>scrolling</module>
-        <module>test_utils</module>
-        <module>validation</module>
+        <module>../app_compile_root</module>
+        <module>../jwt_handler</module>
+        <module>../jwt_helper</module>
+        <module>../lib_compile_root</module>
+        <module>../problem</module>
     </modules>
 </project>
