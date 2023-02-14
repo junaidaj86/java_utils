@@ -20,13 +20,15 @@
     </properties>
 
     <modules>
+        <module>../lib_compile_root</module>
         <module>../app_compile_root</module>
+        <module>../problem</module>
+        <module>../jwt_helper</module>
         <module>../jwt_handler</module>
+        <module>../jsonb_utils</module>
         <module>../logger</module>
         <module>../exception</module>
         <module>../validation</module>
-        <module>../jwt_helper</module>
-        <module>../lib_compile_root</module>
-        <module>../problem</module>
+        <module>../openapi</module>
     </modules>
 </project>
