@@ -22,6 +22,8 @@
     <modules>
         <module>../app_compile_root</module>
         <module>../jwt_handler</module>
+        <module>../logger</module>
+        <module>../exception</module>
         <module>../jwt_helper</module>
         <module>../lib_compile_root</module>
         <module>../problem</module>
