@@ -29,6 +29,9 @@
         <module>../jwt_handler</module>
         <module>../jwt_helper</module>
         <module>../lib_compile_root</module>
+        <module>../jpa_utils</module>
+        <module>../jpa_utils_reactive</module>
+        <module>../rsql_parser</module>
         <module>../openapi</module>
         <module>../problem</module>
         <module>../scrolling</module>
