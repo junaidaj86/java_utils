@@ -2,6 +2,22 @@
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
                               https://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+    <profiles>
+        <profile>
+            <id>withArtifactory</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <repositories>
+                <repository>
+                    <id>libraries</id>
+                    <name>ndm-evolutionary</name>
+                    <url>https://pkgs.dev.azure.com/JenkinsPipelinesArtifacts/ndm-evolutionary/_packaging/libraries/maven/v1</url>
+                </repository>
+            </repositories>
+        </profile>
+    </profiles>
     <servers>
         <server>
             <id>libraries</id>
@@ -9,4 +25,14 @@
             <password>${env.ARTIFACTORY_TOKEN}</password>
         </server>
     </servers>
+    <mirrors>
+        <mirror>
+            <id>artifactory_in_cloud</id>
+            <url>https://pkgs.dev.azure.com/JenkinsPipelinesArtifacts/ndm-evolutionary/_packaging/libraries/maven/v1</url>
+            <mirrorOf>*</mirrorOf>
+        </mirror>
+    </mirrors>
+    <activeProfiles>
+        <activeProfile>withArtifactory</activeProfile>
+    </activeProfiles>
 </settings>

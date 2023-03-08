@@ -24,19 +24,6 @@
             </snapshots>
         </repository>
     </distributionManagement>
-    <repositories>
-        <repository>
-            <id>libraries</id>
-            <url>https://pkgs.dev.azure.com/JenkinsPipelinesArtifacts/ndm-evolutionary/_packaging/libraries/maven/v1
-            </url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
 
     <properties>
         <maven.deploy.skip>false</maven.deploy.skip>
