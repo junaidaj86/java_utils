@@ -4,7 +4,7 @@
                               https://maven.apache.org/xsd/settings-1.0.0.xsd">
     <servers>
         <server>
-            <id>libraries</id>
+            <id>common-libs</id>
             <username>JenkinsPipelinesArtifacts</username>
             <password>${env.ARTIFACTORY_TOKEN}</password>
         </server>
@@ -16,8 +16,8 @@
             <mirrorOf>!libraries</mirrorOf>
         </mirror>
         <mirror>
-            <id>libraries</id>
-            <url>https://pkgs.dev.azure.com/JenkinsPipelinesArtifacts/ndm-evolutionary/_packaging/libraries/maven/v1</url>
+            <id>common-libs</id>
+            <url>https://pkgs.dev.azure.com/JenkinsPipelinesArtifacts/ndm-evolutionary/_packaging/common-libs/maven/v1</url>
             <mirrorOf>libraries,!*</mirrorOf>
         </mirror>
     </mirrors>
