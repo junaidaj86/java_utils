@@ -47,23 +47,23 @@
     </properties>
 
     <modules>
-        <module>../app_compile_root</module>
-        <module>../common_utils</module>
-        <module>../exception</module>
-        <module>../health</module>
-        <module>../logger</module>
-        <module>../jsonb_utils</module>
-        <module>../jwt_handler</module>
-        <module>../jwt_helper</module>
-        <module>../lib_compile_root</module>
-        <module>../jpa_utils</module>
-        <module>../jpa_utils_reactive</module>
-        <module>../rsql_parser</module>
-        <module>../openapi</module>
-        <module>../problem</module>
-        <module>../scrolling</module>
-        <module>../test_utils</module>
-        <module>../validation</module>
-        <module>../chassis</module>
+        <module>app_compile_root</module>
+        <module>common_utils</module>
+        <module>exception</module>
+        <module>health</module>
+        <module>logger</module>
+        <module>jsonb_utils</module>
+        <module>jwt_handler</module>
+        <module>jwt_helper</module>
+        <module>lib_compile_root</module>
+        <module>jpa_utils</module>
+        <module>jpa_utils_reactive</module>
+        <module>rsql_parser</module>
+        <module>openapi</module>
+        <module>problem</module>
+        <module>scrolling</module>
+        <module>test_utils</module>
+        <module>validation</module>
+        <module>chassis</module>
     </modules>
 </project>
