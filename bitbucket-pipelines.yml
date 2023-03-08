@@ -1,0 +1,11 @@
+image: maven:3.8.1-openjdk-17-slim
+
+pipelines:
+  custom:
+    deploy-to-artifactory-dev:
+      - step:
+          name: Build and Test
+          caches:
+            - maven
+          script:
+            - mvn -s settings.xml clean install deploy
