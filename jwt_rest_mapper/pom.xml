@@ -7,7 +7,7 @@
         <groupId>com.postnord.ndm.base</groupId>
         <artifactId>lib-compile-root</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath/>
+        <relativePath>../lib_compile_root/pom.xml</relativePath>
     </parent>
 
     <artifactId>jwt-rest-mapper</artifactId>
