@@ -8,4 +8,5 @@ pipelines:
           caches:
             - maven
           script:
+            - mvn dependency:purge-local-repository -DactTransitively=false -DreResolve=false
             - mvn -s settings.xml clean install deploy
