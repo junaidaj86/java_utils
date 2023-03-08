@@ -1,0 +1,25 @@
+package ${package}.repository.model;
+
+import io.quarkus.hibernate.reactive.panache.PanacheEntityBase;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
+import java.util.UUID;
+
+@Entity
+@Cacheable
+@SuppressWarnings("PMD.AvoidDuplicateLiterals")
+public class Movie extends PanacheEntityBase {
+
+   @Id
+       @GeneratedValue(generator = "UUID")
+       @GenericGenerator(
+               name = "UUID",
+               strategy = "org.hibernate.id.UUIDGenerator"
+       )
+       @Column(name = "id", updatable = false, nullable = false)
+       private UUID id;
+
+       public String title;
+       public String description;
+}

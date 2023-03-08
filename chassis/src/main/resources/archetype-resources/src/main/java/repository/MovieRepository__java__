@@ -1,0 +1,53 @@
+package ${package}.repository;
+
+import ${package}.api.model.MovieDto;
+import ${package}.repository.model.Movie;
+import ${package}.util.MovieMapper;
+import io.quarkus.hibernate.reactive.panache.Panache;
+import io.quarkus.hibernate.reactive.panache.PanacheEntityBase;
+import io.quarkus.hibernate.reactive.panache.PanacheRepository;
+import io.quarkus.panache.common.Sort;
+import io.smallrye.mutiny.Uni;
+
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import javax.ws.rs.core.Response;
+import java.time.Duration;
+import java.util.Collections;
+import java.util.List;
+
+import static javax.ws.rs.core.Response.Status.CREATED;
+
+
+@ApplicationScoped
+@SuppressWarnings("PMD.GuardLogStatement")
+public class MovieRepository implements PanacheRepository<Movie> {
+
+    @Inject
+    MovieMapper movieMapper;
+
+    public Uni<Response> addMovie(final MovieDto movieDto) {
+
+        final Movie movie = movieMapper.toMovie(movieDto);
+
+        return Panache
+                .withTransaction(movie::persist)
+                .replaceWith(Response.ok(movie).status(CREATED)::build)
+                .ifNoItem()
+                .after(Duration.ofMillis(200))
+                .fail()
+                .onFailure()
+                .transform(t -> t.getCause());
+    }
+
+    public Uni<List<Movie>> getAllMovies() {
+        return Movie
+                .listAll(Sort.by("title"))
+                .ifNoItem()
+                .after(Duration.ofMillis(200))
+                .fail()
+                .onFailure()
+                .recoverWithUni(Uni.createFrom().<List<PanacheEntityBase>>item(Collections.EMPTY_LIST));
+
+    }
+}

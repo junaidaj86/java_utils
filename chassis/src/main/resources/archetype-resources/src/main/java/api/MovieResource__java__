@@ -1,0 +1,59 @@
+package ${package}.api;
+
+import com.postnord.ndm.base.logger.NdmLogger;
+import com.postnord.ndm.base.logger.model.LogRecord;
+import ${package}.api.model.MovieDto;
+import ${package}.repository.model.Movie;
+import ${package}.repository.MovieRepository;
+
+import io.smallrye.mutiny.Uni;
+
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
+import javax.validation.Valid;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import java.util.List;
+import java.util.Map;
+
+import static ${package}.util.ConstantsHelper.JSON_B;
+
+
+@RequestScoped
+@Path("/movies")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
+@SuppressWarnings({"PMD.ExcessiveImports", "PMD.AvoidDuplicateLiterals", "PMD.GuardLogStatement"})
+public class MovieResource {
+
+    @Inject
+    MovieRepository movieRepository;
+
+    @POST
+    public Uni<Response> add(@Valid final MovieDto movieDto) {
+
+        NdmLogger.info(LogRecord
+                .builder()
+                .message("Add is already called")
+                .category("Movie-endpoint-generic")
+                .extraData(Map.of("Movie payload: ", JSON_B.toJson(movieDto)))
+                .build());
+
+        return movieRepository.addMovie(movieDto);
+    }
+
+    @GET
+    public Uni<List<Movie>> getAllData() {
+
+        NdmLogger.info(LogRecord
+                .builder()
+                .message("getAllData is already called")
+                .category("Movie-endpoint-generic")
+                .build());
+
+
+        return movieRepository.getAllMovies();
+    }
+
+}

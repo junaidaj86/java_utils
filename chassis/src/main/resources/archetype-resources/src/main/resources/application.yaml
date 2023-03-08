@@ -1,0 +1,105 @@
+quarkus:
+  banner:
+    enabled: false
+  log:
+    level: INFO
+    min-level: DEBUG
+    category:
+      "com.postnord":
+        level: DEBUG
+    console:
+      json:
+        fields:
+          level:
+            enabled: false
+          stack-trace:
+            enabled: false
+          logger-class-name:
+            enabled: false
+          logger-name:
+            enabled: false
+          sequence:
+            enabled: false
+          thread-name:
+            enabled: false
+          thread-id:
+            enabled: false
+          hostname:
+            enabled: false
+          process-name:
+            enabled: false
+          process-id:
+            enabled: false
+          timestamp:
+            date-format: yyyy-MM-dd'T'HH:mm:ss.SSS'Z'
+            zone-id: UTC
+            enabled: true
+        additional-field:
+          service_id:
+            value: movie_service_id
+          version:
+            value: 1.1.0
+  hibernate-orm:
+    dialect: org.hibernate.dialect.PostgreSQL10Dialect
+    jdbc:
+      timezone: UTC
+    database:
+      generation: create
+  datasource:
+    db-kind: postgresql
+    username: ${qm.db.user:postgres}
+    password: ${qm.db.password:password}
+    jdbc: false
+    reactive:
+      url: postgresql://localhost:5432/my_db
+      max-size: 20
+  hibernate-validator:
+    fail-fast: true
+  shutdown:
+    timeout: 30s
+  smallrye-openapi:
+    path: /openapi
+  swagger-ui:
+    path: /swagger-ui
+    always-include: true
+  index-dependency:
+    exception:
+      group-id: com.postnord.ndm.base
+      artifact-id: exception
+    health:
+      group-id: com.postnord.ndm.base
+      artifact-id: health
+    logger:
+      group-id: com.postnord.ndm.base
+      artifact-id: logger
+    validation:
+      group-id: com.postnord.ndm.base
+      artifact-id: validation
+mp:
+  openapi:
+    scan:
+      disable: true
+"%test":
+  quarkus:
+    hibernate-orm:
+      dialect: org.hibernate.dialect.PostgreSQL10Dialect
+      database:
+        generation: drop-and-create
+    datasource:
+      db-kind: postgresql
+      username: ${qm.db.user:test}
+      password: ${qm.db.password:test}
+      jdbc: false
+      reactive:
+        url: postgresql://localhost:5432/test
+        max-size: 20
+env:
+  has:
+    docker: true
+com:
+  postnord:
+    ndm:
+      base:
+        test_utils:
+          postgres:
+            image: postgres:13.4-alpine

@@ -1,0 +1,65 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.postnord.ndm</groupId>
+        <artifactId>base</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>com.postnord.ndm.base</groupId>
+    <artifactId>chassis</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>Chassis</name>
+    <packaging>maven-archetype</packaging>
+
+    <properties>
+        <maven.deploy.skip>false</maven.deploy.skip>
+        <archetype-packaging.version>3.2.0</archetype-packaging.version>
+        <copy-rename-maven-plugin.version>1.0</copy-rename-maven-plugin.version>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.coderplus.maven.plugins</groupId>
+                <artifactId>copy-rename-maven-plugin</artifactId>
+                <version>${copy-rename-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>rename-pom-template</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>rename</goal>
+                        </goals>
+                        <configuration>
+                            <sourceFile>
+                                ${project.build.outputDirectory}/archetype-resources/pom.template
+                            </sourceFile>
+                            <destinationFile>
+                                ${project.build.outputDirectory}/archetype-resources/pom.xml
+                            </destinationFile>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.archetype</groupId>
+                <artifactId>archetype-packaging</artifactId>
+                <version>${archetype-packaging.version}</version>
+            </extension>
+        </extensions>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-archetype-plugin</artifactId>
+                    <version>${archetype-packaging.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>

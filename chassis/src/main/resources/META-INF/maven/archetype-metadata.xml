@@ -1,0 +1,67 @@
+<archetype-descriptor
+        xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0 https://maven.apache.org/xsd/archetype-descriptor-1.1.0.xsd"
+        name="chassis">
+    <!-- workaround for .gitignore not being copied correctly
+         see: https://stackoverflow.com/questions/7981060/maven-archetype-plugin-doesnt-let-resources-in-archetype-resources-through
+         for more details
+    -->
+    <requiredProperties>
+        <requiredProperty key="gitignore">
+            <defaultValue>.gitignore</defaultValue>
+        </requiredProperty>
+        <requiredProperty key="java">
+            <defaultValue>.java</defaultValue>
+        </requiredProperty>
+        <!-- validation does not work with package property -->
+        <requiredProperty key="defaultPackage">
+            <defaultValue>${groupId}.${artifactId}</defaultValue>
+            <validationRegex>^[a-z_]+(\.[a-z_][a-z0-9_]*)*$</validationRegex>
+        </requiredProperty>
+        <requiredProperty key="package">
+            <defaultValue>${defaultPackage}</defaultValue>
+        </requiredProperty>
+        <requiredProperty key="version">
+            <defaultValue>0.0.1-SNAPSHOT</defaultValue>
+        </requiredProperty>
+        <requiredProperty key="baseVersion">
+            <defaultValue>0.0.1-SNAPSHOT</defaultValue>
+        </requiredProperty>
+    </requiredProperties>
+
+    <fileSets>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory/>
+            <includes>
+                <include>__gitignore__</include>
+                <include>README.md</include>
+                <include>PRODUCT_INFO.yml</include>
+                <include>lombok.config</include>
+                <include>generate-api-for-tests</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory>src/test/resources/openapi-generator-templates
+            </directory>
+            <includes>
+                <include>**/*.mustache</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true">
+            <directory>.config</directory>
+        </fileSet>
+        <fileSet filtered="false">
+            <directory>src/main/jib</directory>
+        </fileSet>
+        <fileSet filtered="true" packaged="true">
+            <directory>src/main/java</directory>
+        </fileSet>
+        <fileSet filtered="false">
+            <directory>src/main/resources</directory>
+        </fileSet>
+        <fileSet filtered="true" packaged="true">
+            <directory>src/test/java</directory>
+        </fileSet>
+    </fileSets>
+</archetype-descriptor>

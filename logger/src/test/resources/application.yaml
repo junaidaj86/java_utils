@@ -1,0 +1,51 @@
+"%test":
+  mp:
+    jwt:
+      verify:
+        publickey:
+          location: publicKey.pem
+        issuer: https://www.postnord.com/ndm/
+  quarkus:
+    smallrye-jwt:
+      enabled: true
+    log:
+      console:
+        json:
+          fields:
+            level:
+              enabled: false
+            stack-trace:
+              enabled: false
+            logger-class-name:
+              enabled: false
+            logger-name:
+              enabled: false
+            sequence:
+              enabled: false
+            thread-name:
+              enabled: false
+            thread-id:
+              enabled: false
+            hostname:
+              enabled: false
+            process-name:
+              enabled: false
+            process-id:
+              enabled: false
+            timestamp:
+              date-format: yyyy-MM-dd'T'HH:mm:ss.SSS'Z'
+              zone-id: UTC
+              enabled: true
+          additional-field:
+            service_id:
+              value: test_service_id
+            version:
+              value: 1.1.0
+      level: INFO
+      category:
+        "com.postnord":
+          level: DEBUG
+    index-dependency:
+      jwt-handler:
+        group-id: com.postnord.ndm.base
+        artifact-id: jwt-handler

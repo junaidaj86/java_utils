@@ -1,0 +1,1 @@
+{{#required}} @NdmNotNullParam(message = "{{baseName}} must not be null"){{/required}}{{^isPrimitiveType}}{{^isDate}}{{^isDateTime}}{{^isString}}{{^isFile}} @Valid{{/isFile}}{{/isString}}{{/isDateTime}}{{/isDate}}{{/isPrimitiveType}}{{>beanValidationCore}}{{>beanValidationXExtensibleEnum}}{{>beanValidationArray}}{{>beanValidationMap}}

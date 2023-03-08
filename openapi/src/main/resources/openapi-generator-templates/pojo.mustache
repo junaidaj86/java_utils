@@ -1,0 +1,161 @@
+{{#extraAnnotationPackage}}
+import {{extraAnnotationPackage}}.*;
+{{/extraAnnotationPackage}}
+{{#useBeanValidation}}
+import com.postnord.ndm.api.common.validation.constraints.*;
+{{/useBeanValidation}}
+import io.quarkus.runtime.annotations.RegisterForReflection;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import javax.json.bind.annotation.JsonbTypeDeserializer;
+import javax.json.bind.annotation.JsonbTypeSerializer;
+import javax.json.bind.serializer.DeserializationContext;
+import javax.json.bind.serializer.JsonbDeserializer;
+import javax.json.bind.serializer.JsonbSerializer;
+import javax.json.bind.serializer.SerializationContext;
+import javax.json.stream.JsonGenerator;
+import javax.json.stream.JsonParser;
+import javax.json.bind.annotation.JsonbProperty;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
+{{#discriminator}}
+import java.util.Map;
+import java.util.stream.Collectors;
+import javax.enterprise.inject.spi.CDI;
+import javax.json.bind.Jsonb;
+{{/discriminator}}
+
+{{#description}}
+/**
+  * {{{.}}}
+ **/
+{{/description}}
+{{#discriminator}}{{>jsonbTypeDeserializerAnnotation}}{{/discriminator}}{{>additionalModelTypeAnnotations}}{{>generatedAnnotation}}{{#useNoArgsConstructor}} @NoArgsConstructor{{/useNoArgsConstructor}}{{#useSuperBuilder}} @SuperBuilder{{/useSuperBuilder}}
+@RegisterForReflection
+public class {{classname}} {{#parent}}extends {{{.}}}{{/parent}}{{#serializableModel}} implements Serializable{{/serializableModel}} {
+  {{#vars}}{{#isEnum}}{{^isContainer}}
+{{>enumClass}}{{/isContainer}}{{#isContainer}}{{#mostInnerItems}}
+{{>enumClass}}{{/mostInnerItems}}{{/isContainer}}{{/isEnum}}
+{{#description}}
+ /**
+   * {{{.}}}
+  **/
+{{/description}}
+{{#vendorExtensions.x-extensible-enum}}
+  public static final String {{nameInSnakeCase}}_{{{.}}} = "{{{.}}}";
+{{/vendorExtensions.x-extensible-enum}}
+{{#items.vendorExtensions.x-extensible-enum}}
+  public static final String {{nameInSnakeCase}}_{{{.}}} = "{{{.}}}";
+{{/items.vendorExtensions.x-extensible-enum}}
+  @JsonbProperty("{{baseName}}")
+{{#isContainer}}
+  private {{{datatypeWithEnum}}} {{name}}{{#required}} = {{{defaultValue}}}{{/required}}{{^required}} = null{{/required}};
+{{/isContainer}}
+{{^isContainer}}
+  private {{{datatypeWithEnum}}} {{name}}{{#defaultValue}} = {{{.}}}{{/defaultValue}};
+{{/isContainer}}
+  {{/vars}}
+
+{{#discriminator}}
+  public {{classname}}() {
+    {{#vars}}{{#isDiscriminator}}objectType = Deserializer.KEYS.getOrDefault(getClass(), "UNSET");{{/isDiscriminator}}{{/vars}}
+  }
+{{/discriminator}}
+
+  {{#vars}}
+ /**
+  {{#description}}
+   * {{.}}
+  {{/description}}
+  {{^description}}
+   * Get {{name}}
+  {{/description}}
+  {{#minimum}}
+   * minimum: {{.}}
+  {{/minimum}}
+  {{#maximum}}
+   * maximum: {{.}}
+  {{/maximum}}
+   * @return {{name}}
+  {{#deprecated}}
+   * @deprecated
+  {{/deprecated}}
+  **/
+{{#deprecated}}
+  @Deprecated
+{{/deprecated}}
+{{#vendorExtensions.x-extra-annotation}}
+  {{{vendorExtensions.x-extra-annotation}}}
+{{/vendorExtensions.x-extra-annotation}}
+{{#useBeanValidation}}{{>beanValidation}}{{/useBeanValidation}}  public {{{datatypeWithEnum}}} {{getter}}() {
+    return {{name}};
+  }
+
+  {{^isReadOnly}}
+  /**
+    * Set {{name}}
+  **/
+  public void {{setter}}({{{datatypeWithEnum}}} {{name}}) {
+    this.{{name}} = {{name}};
+  }
+
+  public {{classname}} {{name}}({{{datatypeWithEnum}}} {{name}}) {
+    this.{{name}} = {{name}};
+    return this;
+  }
+  {{#isArray}}
+
+  public {{classname}} add{{nameInCamelCase}}Item({{{items.datatypeWithEnum}}} {{name}}Item) {
+    if ({{name}} == null) {
+      {{#uniqueItems}}
+      {{name}} = new LinkedHashSet<>();
+      {{/uniqueItems}}
+      {{^uniqueItems}}
+      {{name}} = new ArrayList<>();
+      {{/uniqueItems}}
+    }
+    this.{{name}}.add({{name}}Item);
+    return this;
+  }
+  {{/isArray}}
+  {{#isMap}}
+
+  public {{classname}} put{{nameInCamelCase}}Item(String key, {{{items.datatypeWithEnum}}} {{name}}Item) {
+    if ({{name}} == null) {
+      {{name}} = new LinkedHashMap<>();
+    }
+    this.{{name}}.put(key, {{name}}Item);
+    return this;
+  }
+  {{/isMap}}
+  {{/isReadOnly}}
+
+  {{/vars}}
+
+  /**
+    * Create a string representation of this pojo.
+  **/
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class {{classname}} {\n");
+    {{#parent}}sb.append("    ").append(toIndentedString(super.toString())).append("\n");{{/parent}}
+    {{#vars}}sb.append("    {{name}}: ").append(toIndentedString({{name}})).append("\n");
+    {{/vars}}sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private static String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+  {{#discriminator}}{{>jsonbDeserializer}}{{/discriminator}}
+}
