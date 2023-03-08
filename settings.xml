@@ -28,12 +28,12 @@
         <mirror>
             <id>central</id>
             <url>https://repo.maven.apache.org/maven2/</url>
-            <mirrorOf>!libraries, *</mirrorOf>
+            <mirrorOf>!libraries</mirrorOf>
         </mirror>
         <mirror>
             <id>libraries</id>
             <url>https://pkgs.dev.azure.com/JenkinsPipelinesArtifacts/ndm-evolutionary/_packaging/libraries/maven/v1</url>
-            <mirrorOf>libraries, !*</mirrorOf>
+            <mirrorOf>libraries,!*</mirrorOf>
         </mirror>
     </mirrors>
     <activeProfiles>
