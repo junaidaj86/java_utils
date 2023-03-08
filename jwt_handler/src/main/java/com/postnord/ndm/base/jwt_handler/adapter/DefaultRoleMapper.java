@@ -8,7 +8,6 @@ import io.smallrye.mutiny.Uni;
 import javax.enterprise.context.ApplicationScoped;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @DefaultBean
 @ApplicationScoped
@@ -24,7 +23,7 @@ public class DefaultRoleMapper implements RoleMapper {
                                         Collections.unmodifiableSet(mapping.getRoles())
                                 )
                         )
-                        .collect(Collectors.toUnmodifiableList())
+                        .toList()
         );
     }
 }

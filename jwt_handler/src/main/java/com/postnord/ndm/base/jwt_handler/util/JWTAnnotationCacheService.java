@@ -1,18 +1,16 @@
 package com.postnord.ndm.base.jwt_handler.util;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import io.quarkus.cache.CacheResult;
 
 import javax.annotation.security.DenyAll;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.ApplicationScoped;
-
-import io.quarkus.cache.CacheResult;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Method;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Stream;
 
 @ApplicationScoped
 public class JWTAnnotationCacheService {
@@ -32,7 +30,7 @@ public class JWTAnnotationCacheService {
     Annotation getAnnotation(final Annotation... declaredAnnotations) {
         final List<Annotation> annotations = Stream.of(declaredAnnotations)
                 .filter(annotation -> jwtAnnotations.contains(annotation.annotationType()))
-                .collect(Collectors.toList());
+                .toList();
         if (annotations.isEmpty()) {
             return null;
         }
