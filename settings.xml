@@ -26,7 +26,7 @@
     </servers>
     <mirrors>
         <mirror>
-            <id>artifactory_in_cloud</id>
+            <id>central</id>
             <url>https://repo.maven.apache.org/maven2/</url>
             <mirrorOf>*</mirrorOf>
         </mirror>
