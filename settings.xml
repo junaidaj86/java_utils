@@ -21,7 +21,7 @@
         <server>
             <id>libraries</id>
             <username>JenkinsPipelinesArtifacts</username>
-            <password>${env.ARTIFACTORY_TOKEN}</password>
+            <password>${ARTIFACTORY_TOKEN}</password>
         </server>
     </servers>
     <mirrors>
