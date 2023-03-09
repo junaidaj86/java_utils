@@ -13,7 +13,7 @@ ONBUILD RUN apk update && \
 
 
 # Install OpenJDK 17
-RUN apk --no-cache add openjdk17-jre-headless
+RUN apk --no-cache add openjdk17
 ENV HOME /root
 ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
