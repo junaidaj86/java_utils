@@ -1,4 +1,4 @@
-image: maven:3.8.1-openjdk-17-slim
+image: 043970611749.dkr.ecr.eu-west-1.amazonaws.com/ndm/java17-maven-base:latest
 
 pipelines:
   custom:
