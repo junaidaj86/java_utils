@@ -1,3 +1,7 @@
+## Login into Amazon ECR first
+
+    aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin 043970611749.dkr.ecr.eu-west-1.amazonaws.com
+
 ## Build manual openjdk11-jre-headless-maven-3.8.1
 
     docker build -f Dockerfile-11 -t ndm/java11-maven-base .
