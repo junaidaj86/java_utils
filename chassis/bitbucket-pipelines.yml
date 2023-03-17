@@ -1,0 +1,13 @@
+image: public.ecr.aws/a1t5b6y5/ndm/java17-maven-base:latest
+
+pipelines:
+  custom:
+    deploy-to-artifactory-dev:
+      - step:
+          name: Build and Test
+          caches:
+            - maven
+          script:
+            - mvn -s settings.xml archetype:generate -DarchetypeArtifactId=chassis -DarchetypeGroupId=com.postnord.ndm.base -DarchetypeVersion=0.0.1-SNAPSHOT -DartifactId=hamed_artifact -DgroupId=com.postnord.ndm
+            - cd hamed_artifact
+            - mvn -s settings.xml clean install deploy
