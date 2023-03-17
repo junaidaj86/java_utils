@@ -15,8 +15,7 @@
     <name>${artifactId}</name>
 
     <properties>
-        <maven.deploy.skip>${doesNotProduceMavenDependenciesForOtherProducts}</maven.deploy.skip>
-        <evms.skip>${isNotUsedInProduction}</evms.skip>
+        <kafka.deserializer>${package}.kafkaManager.handler.EventDeserializer</kafka.deserializer>
         <openapi.api.package>${package}.api</openapi.api.package>
         <openapi.model.package>${package}.api.model</openapi.model.package>
         <docker.image.release.stage>dev</docker.image.release.stage>
@@ -25,6 +24,7 @@
         <sonar.sources.base>pom.xml,src/main</sonar.sources.base>
         <sonar.sources>${sonar.sources.base},PRODUCT_INFO.yml</sonar.sources>
         <sonar.exclusions>src/main/resources/META-INF/openapi.yaml</sonar.exclusions>
+        <testcontainer.version>1.17.6</testcontainer.version>
     </properties>
 
     <dependencies>
@@ -32,6 +32,14 @@
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-resteasy-reactive-jsonb</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-smallrye-reactive-messaging-kafka</artifactId>
+       </dependency>
+       <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-hibernate-reactive-panache</artifactId>
+       </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-config-yaml</artifactId>
@@ -43,10 +51,6 @@
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-hibernate-validator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-hibernate-reactive-panache</artifactId>
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
@@ -115,8 +119,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-rest-client-jsonb</artifactId>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>testcontainers</artifactId>
+            <version>${testcontainer.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
