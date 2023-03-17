@@ -1,0 +1,53 @@
+package ${package}.api;
+
+import io.quarkus.test.common.QuarkusTestResource;
+import io.quarkus.test.junit.QuarkusTest;
+import io.restassured.RestAssured;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+
+import javax.ws.rs.core.MediaType;
+
+import static ${package}.helper.ConstantsHelper.*;
+import static io.restassured.RestAssured.given;
+
+@QuarkusTest
+@QuarkusTestResource(KafkaTestResource.class)
+@QuarkusTestResource(PostgreSqlTestResource.class)
+class CreditCardTest {
+
+    @BeforeAll
+    static void init() {
+        RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
+    }
+
+    @Test
+    @Order(1)
+    void makeCreditWithRightPayloadWillReturnStatusOK() {
+
+        given()
+                .body(CREDIT_CARD_PAYLOAD)
+                .when()
+                .contentType(MediaType.APPLICATION_JSON)
+                .post(CREDIT_CARD_PATH)
+                .then()
+                .statusCode(200);
+
+    }
+
+    @Test
+    @Order(2)
+    void makeCreditWithMalFormPayloadWillReturnStatusBadRequest() {
+
+        given()
+                .body(BAD_CREDIT_CARD_PAYLOAD)
+                .when()
+                .contentType(MediaType.APPLICATION_JSON)
+                .post(CREDIT_CARD_PATH)
+                .then()
+                .statusCode(400);
+
+    }
+
+}
