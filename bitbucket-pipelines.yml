@@ -9,3 +9,12 @@ pipelines:
             - maven
           script:
             - mvn -s settings.xml clean install deploy
+    build-a-micro-service-to-deploy:
+      - step:
+          name: Build and deploy
+          caches:
+            - maven
+          script:
+            - mvn -s settings.xml archetype:generate -DarchetypeArtifactId=chassis -DarchetypeGroupId=com.postnord.ndm.base -DarchetypeVersion=0.0.1-SNAPSHOT -DartifactId=hamed_artifact -DgroupId=com.postnord.ndm
+            - cd hamed_artifact
+            - mvn -s settings.xml clean install deploy
