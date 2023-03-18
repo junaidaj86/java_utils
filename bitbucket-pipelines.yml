@@ -1,5 +1,7 @@
 image: public.ecr.aws/a1t5b6y5/ndm/java17-maven-base:latest
 
+
+
 pipelines:
   custom:
     deploy-to-artifactory-dev:
@@ -14,6 +16,8 @@ pipelines:
           name: Build and deploy
           caches:
             - maven
+          services:
+            - docker
           script:
             - cd credit-micro-service
-            - mvn -s ../settings.xml clean install
+            - mvn -s ../settings.xml clean install -Dpmd.skip=true

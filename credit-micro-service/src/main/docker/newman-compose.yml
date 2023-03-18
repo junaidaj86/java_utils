@@ -9,7 +9,7 @@ services:
   newman:
     image: registry.gitlab.com/hamedhatami/credit-micro-service/newman:1.0.0
     container_name: postmanTests
-    command: run quarkus_demo_collection.json  --reporters cli,html  --reporter-html-export report.html
+    command: run credit-micro-service_collection.json  --reporters cli,html  --reporter-html-export report.html
     volumes:
       - ./collections:/etc/newman
     depends_on:
