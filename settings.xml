@@ -6,7 +6,7 @@
         <server>
             <id>common-libs</id>
             <username>JenkinsPipelinesArtifacts</username>
-            <password>6iklx7gl6hwcf7v2eohyamkq467b6i3kctnljyha2lzgqidevniq</password>
+            <password>${env.ARTIFACTORY_TOKEN}</password>
         </server>
     </servers>
     <mirrors>
