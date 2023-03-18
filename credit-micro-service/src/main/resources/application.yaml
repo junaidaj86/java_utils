@@ -1,0 +1,38 @@
+quarkus:
+  banner:
+    enabled: false
+  log:
+    level: INFO
+  hibernate-orm:
+    log:
+      sql: false
+    dialect: org.hibernate.dialect.PostgreSQL10Dialect
+    jdbc:
+      timezone: UTC
+    database:
+      generation: create
+  datasource:
+    db-kind: postgresql
+    username: postgres
+    password: password
+    reactive:
+      url: vertx-reactive:postgresql://localhost:5432/my_db
+      max-size: 20
+
+kafka:
+  bootstrap:
+    servers: ${KAFKA_SERVER:localhost:9092}
+mp:
+  messaging:
+    outgoing:
+      event-out:
+        connector: smallrye-kafka
+        topic: sample-topic
+        value:
+          serializer: io.quarkus.kafka.client.serialization.JsonbSerializer
+    incoming:
+      event-in:
+        connector: smallrye-kafka
+        topic: sample-topic
+        value:
+          deserializer: com.postnord.kafkaManager.handler.EventDeserializer

@@ -1,0 +1,58 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: {{.Values.app.namespace}}
+  labels:
+    app.kubernetes.io/name: {{.Chart.Name}}
+    app.kubernetes.io/version: {{.Chart.Version}}
+  name: {{include "quarkus-demo.fullname" .}}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{.Chart.Name}}
+      app.kubernetes.io/version: {{.Chart.Version}}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{.Chart.Name}}
+        app.kubernetes.io/version: {{.Chart.Version}}
+    spec:
+      containers:
+        - name: {{.Chart.Name}}
+          image: "{{.Values.image.repository}}:{{.Values.image.tag}}"
+          imagePullPolicy: Always
+          env:
+            - name: "APP_METRICS_URI"
+              value: "{{.Values.app.metrics.path}}"
+            - name: "APP_OPENAPI_URI"
+              value: "{{.Values.app.openApi.path}}"
+            - name: "APP_SWAGGER_URI"
+              value: "{{.Values.app.swagger.path}}"
+            - name: "APP_HEALTH_URI"
+              value: "{{.Values.app.health.path}}"
+          ports:
+            - containerPort: {{.Values.service.port}}
+              name: http
+              protocol: TCP
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /q/health/live
+              port: {{.Values.service.port}}
+              scheme: HTTP
+            initialDelaySeconds: 0
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 10
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /q/health/ready
+              port: {{.Values.service.port}}
+              scheme: HTTP
+            initialDelaySeconds: 0
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 10

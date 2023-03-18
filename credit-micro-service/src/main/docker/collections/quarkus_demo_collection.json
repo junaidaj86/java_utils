@@ -1,0 +1,56 @@
+{
+	"info": {
+		"_postman_id": "1ec60551-23f6-48a6-8d97-96ef896fb364",
+		"name": "quarkus-demo-collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get credit item",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://api:8080/credit",
+					"protocol": "http",
+					"host": [
+						"api"
+					],
+					"port": "8080",
+					"path": [
+						"credit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post a credit item",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"ownerName\":\"aaa\",\"cardNumber\":\"1111-2222-3333-4444\",\"expirationMonth\":3,\"expirationYear\":1978,\"securityCode\":200,\"availableCredit\":60000}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://api:8080/credit",
+					"protocol": "http",
+					"host": [
+						"api"
+					],
+					"port": "8080",
+					"path": [
+						"credit"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

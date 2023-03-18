@@ -1,0 +1,123 @@
+image: registry.gitlab.com/hamedhatami/quarkus-demo/all-in-one:1.4.0
+
+variables:
+  GIT_SSL_NO_VERIFY: "1"
+  MAVEN_CLI_OPTS: "-s .m2/settings.xml --batch-mode"
+  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
+  DOCKER_HOST: "tcp://docker:2375"
+  DOCKER_DRIVER: overlay2
+  APP_NAME: ${CI_PROJECT_NAME}
+  APP_VERSION: "1.0.0"
+  APP_NAMESPACE: "quarkus-demo"
+  DOCKER_REGISTRY: "registry.gitlab.com"
+
+services:
+  - name: docker:20.10.11-dind
+    alias: docker
+    command: [ "--registry-mirror", "https://registry-mirror.example.com" ]
+
+stages:
+  - build
+  - test
+  - build_native
+  - docker_build
+  - postman_test
+  - load_test
+# - deploy
+
+cache:
+  paths:
+    - .m2/repository/
+    - target/
+
+build:
+  stage: build
+  script:
+    - mvn $MAVEN_CLI_OPTS $MAVEN_OPTS package -Dmaven.test.skip=true
+  except:
+    refs:
+      - main
+
+build_native:
+  stage: build_native
+  script:
+    - mvn $MAVEN_CLI_OPTS $MAVEN_OPTS package -Pnative -Dmaven.test.skip=true
+  artifacts:
+    expire_in: 2 days
+    paths:
+      - target/*-runner
+  only:
+    refs:
+      - main
+
+unit_test:
+  stage: test
+  script:
+    - mvn $MAVEN_CLI_OPTS $MAVEN_OPTS test
+  artifacts:
+    when: always
+    paths:
+      - target/surefire-reports/TEST-*.xml
+    reports:
+      junit:
+        - target/surefire-reports/TEST-*.xml
+  except:
+    refs:
+      - main
+
+postman_test:
+  stage: postman_test
+  script:
+    - docker-compose -f src/main/docker/newman-compose.yml up -d
+  artifacts:
+    paths:
+      - src/main/docker/collections/report.html
+  only:
+    refs:
+      - main
+
+docker_build:
+  stage: docker_build
+  image: docker
+  script:
+    - docker build -f src/main/docker/Dockerfile.native-micro -t ${DOCKER_REGISTRY}/hamedhatami/${APP_NAME}:${APP_VERSION} .
+    - docker login registry.gitlab.com -u ${GITLAB_USER_LOGIN} -p ${access_token}
+    - docker push ${DOCKER_REGISTRY}/hamedhatami/${APP_NAME}:${APP_VERSION}
+  only:
+    refs:
+      - main
+
+
+load_test:
+  stage: load_test
+  script:
+    - mvn $MAVEN_CLI_OPTS $MAVEN_OPTS gatling:test -Dapplication_image=registry.gitlab.com/hamedhatami/quarkus-demo:1.0.0
+  artifacts:
+    paths:
+      - target/gatling/*
+  only:
+    refs:
+      - main
+
+#deploy:
+#  stage: deploy
+#  image: dtzar/helm-kubectl
+#  before_script:
+#    - git config http.sslverify false
+#    - NEW_VERSION=${CI_COMMIT_TAG}
+#    - wget https://github.com/digitalocean/doctl/releases/download/v1.70.0/doctl-1.70.0-linux-amd64.tar.gz
+#    - tar xf doctl-1.70.0-linux-amd64.tar.gz
+#    - mv doctl /builds/EuropeanFocalPay/version-3/BackendV3/${APP_NAME}
+#    - /builds/EuropeanFocalPay/version-3/BackendV3/${APP_NAME}/doctl auth init -t ${DIGITAL_OCEAN_TOKEN}
+#    - /builds/EuropeanFocalPay/version-3/BackendV3/${APP_NAME}/doctl kubernetes cluster kubeconfig save develop-v3
+#    - kubectl delete secrets docker-cfg -n ${APP_NAMESPACE} --ignore-not-found=true
+#    - export AUTH=$(/builds/EuropeanFocalPay/version-3/BackendV3/${APP_NAME}/doctl registry docker-config --expiry-seconds 300)
+#    - export AUTH_ENCODED=$(echo -n ${AUTH}|base64 -w 0)
+#    - sed -i -e "s/OVERRIDDEN_CONFIG/${AUTH_ENCODED}/g" src/main/helm/${APP_NAME}/templates/docker-cfg.yaml
+#  script:
+#    - cd src/main/helm
+#    - helm upgrade ${APP_NAME}  ${APP_NAME} --install --namespace "${APP_NAMESPACE}" --set app.mongodb.connectionString="mongodb://mongodb:27017" --set app.metrics.path="/api/metrics" --set app.openApi.path="/api/openapi" --set app.swagger.path="/api/swagger-ui" --set app.health.path="/api/health" --set app.root.path="/api/psd2/v1" --set app.log.file.enabled="false" --set app.log.console.enabled="true" --set app.keepAliveTimeout="5000" --set app.connectionTimeout="5000" --set app.responseTimeout="5000" --set app.psd2.swedbank.host="psd2.api.swedbank.com" --set app.psd2.swedbank.port="443" --set app.psd2.swedbank.clientId="l7cecdaabb75bf4b5ea4f322da36ef5c14" --set app.psd2.swedbank.clientSecret="bae43f90cb704ab1901370d80421628a" --set app.psd2.swedbank.redirectUri="http://www.google.com" --set app.psd2.swedbank.scope="PSD2sandbox" --set app.psd2.swedbank.bic="SANDSESS" --set app.psd2.swedbank.authenticationMethodId="MOBILE_ID" --set app.psd2.swedbank.grantType="authorization_code" --set app.psd2.swedbank.decoupledAuthorizeUri="/psd2/v4/authorize-decoupled" --set app.psd2.swedbank.redirectAuthorizeUri="/psd2/authorize" --set app.psd2.swedbank.authorizeStatusUri="/psd2/v4/authorize-decoupled/authorize" --set app.psd2.swedbank.domesticPaymentUri="/sandbox/v4/payments/se-domestic-credit-transfers" --set app.psd2.swedbank.tokenUri="/psd2/token" --set app.psd2.swedbank.consentUri="/sandbox/v4/consents" --set app.psd2.swedbank.accountUri="/sandbox/v4/accounts" --set app.namespace="${APP_NAMESPACE}" --set image.repository="${PSD2_DOCKER_REGISTRY}/focalpay/backendv3/psd2/${APP_NAME}" --set image.tag="${APP_VERSION}"
+#  when: manual
+#  only:
+#    refs:
+#      - main

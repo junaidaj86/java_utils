@@ -1,0 +1,41 @@
+---
+app:
+  metrics:
+    path: "OVERRIDDEN_PLACEHOLDER"
+  openApi:
+    path: "OVERRIDDEN_PLACEHOLDER"
+  swagger:
+    path: "OVERRIDDEN_PLACEHOLDER"
+  health:
+    path: "OVERRIDDEN_PLACEHOLDER"
+  namespace: "OVERRIDDEN_PLACEHOLDER"
+  replicaCount: 1
+
+image:
+  repository:
+    "OVERRIDDEN_PLACEHOLDER"
+  pullPolicy: Always
+  tag: "OVERRIDDEN_PLACEHOLDER"
+
+podAnnotations: {}
+
+service:
+  type: LoadBalancer
+  port: 8080
+  targetPort: http
+
+ingress:
+  enabled: false
+  annotations: {}
+  hosts:
+    - host: chart-example.local
+      paths: []
+  tls: []
+
+resources: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
