@@ -17,8 +17,6 @@
     </description>
 
     <properties>
-        <maven.deploy.skip>false</maven.deploy.skip>
-
         <sonar.sources>${sonar.sources.base}</sonar.sources>
     </properties>
 

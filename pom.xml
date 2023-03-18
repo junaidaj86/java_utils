@@ -14,7 +14,8 @@
     <distributionManagement>
         <repository>
             <id>common-libs</id>
-            <url>https://pkgs.dev.azure.com/JenkinsPipelinesArtifacts/ndm-evolutionary/_packaging/common-libs/maven/v1</url>
+            <url>https://pkgs.dev.azure.com/JenkinsPipelinesArtifacts/ndm-evolutionary/_packaging/common-libs/maven/v1
+            </url>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -23,11 +24,21 @@
             </snapshots>
         </repository>
     </distributionManagement>
+    <repositories>
+        <repository>
+            <id>common-libs</id>
+            <url>https://pkgs.dev.azure.com/JenkinsPipelinesArtifacts/ndm-evolutionary/_packaging/common-libs/maven/v1
+            </url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
     <properties>
-        <maven.deploy.skip>false</maven.deploy.skip>
-        <evms.skip>false</evms.skip>
-
         <sonar.sources.base>pom.xml,src/main</sonar.sources.base>
         <sonar.sources>${sonar.sources.base}</sonar.sources>
     </properties>

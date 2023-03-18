@@ -6,19 +6,19 @@
         <server>
             <id>common-libs</id>
             <username>JenkinsPipelinesArtifacts</username>
-            <password>${env.ARTIFACTORY_TOKEN}</password>
+            <password>6iklx7gl6hwcf7v2eohyamkq467b6i3kctnljyha2lzgqidevniq</password>
         </server>
     </servers>
     <mirrors>
         <mirror>
             <id>central</id>
             <url>https://repo.maven.apache.org/maven2/</url>
-            <mirrorOf>!libraries</mirrorOf>
+            <mirrorOf>!common-libs</mirrorOf>
         </mirror>
         <mirror>
             <id>common-libs</id>
             <url>https://pkgs.dev.azure.com/JenkinsPipelinesArtifacts/ndm-evolutionary/_packaging/common-libs/maven/v1</url>
-            <mirrorOf>libraries,!*</mirrorOf>
+            <mirrorOf>common-libs,!*</mirrorOf>
         </mirror>
     </mirrors>
 </settings>

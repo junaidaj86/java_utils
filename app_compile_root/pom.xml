@@ -16,8 +16,6 @@
     <packaging>pom</packaging>
 
     <properties>
-        <maven.deploy.skip>false</maven.deploy.skip>
-
         <liquibase.plugin.version>4.19.0</liquibase.plugin.version>
         <copy-rename-maven-plugin.version>1.0</copy-rename-maven-plugin.version>
         <maven-resources-plugin.version>3.3.0</maven-resources-plugin.version>
