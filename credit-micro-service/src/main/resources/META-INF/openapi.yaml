@@ -1,0 +1,54 @@
+---
+openapi: 3.0.3
+info:
+  title: hamed_artifact API
+  version: 0.0.1-SNAPSHOT
+paths:
+  /movies:
+    get:
+      tags:
+        - Movie Resource
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Movie'
+    post:
+      tags:
+        - Movie Resource
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MovieDto'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json: {}
+components:
+  schemas:
+    Movie:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/UUID'
+        title:
+          type: string
+        description:
+          type: string
+    MovieDto:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+    UUID:
+      format: uuid
+      pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+      type: string
