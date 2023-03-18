@@ -16,7 +16,7 @@ public class Healthz implements HealthCheck {
     public HealthCheckResponse call() {
 
         return HealthCheckResponse
-                .named("quarkus-demo")
+                .named("credit-micro-service")
                 .up()
                 .build();
     }

@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "1ec60551-23f6-48a6-8d97-96ef896fb364",
-		"name": "quarkus-demo-collection",
+		"name": "credit-micro-service-collection",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [

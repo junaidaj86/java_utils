@@ -7,7 +7,7 @@ networks:
 
 services:
   newman:
-    image: registry.gitlab.com/hamedhatami/quarkus-demo/newman:1.0.0
+    image: registry.gitlab.com/hamedhatami/credit-micro-service/newman:1.0.0
     container_name: postmanTests
     command: run quarkus_demo_collection.json  --reporters cli,html  --reporter-html-export report.html
     volumes:
@@ -17,8 +17,8 @@ services:
     networks:
       - app_network
   api:
-    image: registry.gitlab.com/hamedhatami/quarkus-demo:1.0.0
-    container_name: quarkus_demo
+    image: registry.gitlab.com/hamedhatami/credit-micro-service:1.0.0
+    container_name: credit-micro-service
     ports:
       - "8080:8080"
     networks:

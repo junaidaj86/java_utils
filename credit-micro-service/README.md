@@ -81,16 +81,16 @@ mvn clean gatling:test
 ## Now it's time to start deploying it into Kubernetes via Helm Carts
 
 ```bash
-kubectl create namespace quarkus-demo
+kubectl create namespace credit-micro-service
 
-helm upgrade quarkus-demo  quarkus-demo \
+helm upgrade credit-micro-service  credit-micro-service \
 --install \
---namespace quarkus-demo \
+--namespace credit-micro-service \
 --set app.metrics.path="/api/metrics" \
 --set app.openApi.path="/api/openapi" \
 --set app.swagger.path="/api/swagger-ui" \
 --set app.health.path="/api/health" \
---set app.namespace="quarkus-demo" \
---set image.repository="localhost:5000/ehatham/quarkus-demo" \
+--set app.namespace="credit-micro-service" \
+--set image.repository="localhost:5000/ehatham/credit-micro-service" \
 --set image.tag="1.0.0-SNAPSHOT"
 ```

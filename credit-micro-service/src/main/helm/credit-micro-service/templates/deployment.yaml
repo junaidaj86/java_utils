@@ -6,7 +6,7 @@ metadata:
   labels:
     app.kubernetes.io/name: {{.Chart.Name}}
     app.kubernetes.io/version: {{.Chart.Version}}
-  name: {{include "quarkus-demo.fullname" .}}
+  name: {{include "credit-micro-service.fullname" .}}
 spec:
   replicas: 1
   selector:

@@ -4,7 +4,7 @@ kind: Pod
 metadata:
   name: "{{ .Release.Name }}-test-connection"
   labels:
-    {{include "quarkus-demo.labels" . | nindent 4}}
+    {{include "credit-micro-service.labels" . | nindent 4}}
   annotations:
     "helm.sh/hook": test-success
 spec:
@@ -12,5 +12,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args: ['{{include "quarkus-demo.fullname" .}}:{{.Values.service.port}}']
+      args: ['{{include "credit-micro-service.fullname" .}}:{{.Values.service.port}}']
   restartPolicy: Never
