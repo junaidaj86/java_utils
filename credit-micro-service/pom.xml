@@ -9,7 +9,7 @@
         <groupId>com.postnord.ndm.base</groupId>
         <artifactId>app-compile-root</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath/>
+        <relativePath>../app_compile_root/pom.xml</relativePath>
     </parent>
 
     <groupId>com.postnord.ndm</groupId>
