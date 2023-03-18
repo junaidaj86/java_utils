@@ -17,19 +17,6 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>credit-micro-service</name>
 
-    <distributionManagement>
-        <repository>
-            <id>common-libs</id>
-            <url>https://pkgs.dev.azure.com/JenkinsPipelinesArtifacts/ndm-evolutionary/_packaging/common-libs/maven/v1</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </distributionManagement>
-
     <properties>
         <kafka.deserializer>com.postnord.ndm.credit.kafkaManager.handler.EventDeserializer</kafka.deserializer>
         <openapi.api.package>com.postnord.ndm.credit.api</openapi.api.package>
