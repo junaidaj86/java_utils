@@ -1,7 +1,5 @@
 image: public.ecr.aws/a1t5b6y5/ndm/java17-maven-base:latest
 
-
-
 pipelines:
   custom:
     deploy-to-artifactory-dev:
