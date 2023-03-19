@@ -18,7 +18,7 @@ pipelines:
             - docker
           script:
             - cd credit-micro-service
-            - mvn -s ../settings.xml clean install -Dpmd.skip=true -Dmaven.test.skip=true
+            - mvn -s ../settings.xml clean install -Dpmd.skip=true
             - IMAGE="ndm/credit-micro-service"
             - TAG=${BITBUCKET_BUILD_NUMBER}.${BITBUCKET_COMMIT}
             - aws configure set aws_access_key_id "${AWS_KEY}"
