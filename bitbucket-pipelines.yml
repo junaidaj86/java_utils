@@ -18,11 +18,14 @@ pipelines:
             - docker
           script:
             - cd credit-micro-service
-            - mvn -s ../settings.xml clean install -Dpmd.skip=true
-            - docker build -f src/main/docker/Dockerfile.jvm -t ndm/credit-micro-service .
-            - export TAG_ID=${BITBUCKET_BUILD_NUMBER}.${BITBUCKET_COMMIT}
-            - pipe: atlassian/aws-ecr-push-image:1.2.0
-              variables:
-                AWS_DEFAULT_REGION: 'eu-west-1' # Optional if already defined in the context.
-                IMAGE_NAME: "ndm/credit-micro-service"
-                TAGS: $TAG_ID
+            - mvn -s ../settings.xml clean install -Dpmd.skip=true -Dmaven.test.skip=true
+            - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+            - unzip awscliv2.zip
+            - sudo ./aws/install
+            - IMAGE="ndm/credit-micro-service"
+            - TAG=${BITBUCKET_BUILD_NUMBER}.${BITBUCKET_COMMIT}
+            - aws configure set aws_access_key_id "${AWS_KEY}"
+            - aws configure set aws_secret_access_key "${AWS_SECRET}"
+            - eval $(aws ecr get-login --no-include-email --region eu-west-1 | sed 's;https://;;g')
+            - docker build -f src/main/docker/Dockerfile.jvm -t ${IMAGE}:${TAG} .
+            - docker push ${IMAGE}:${TAG}
