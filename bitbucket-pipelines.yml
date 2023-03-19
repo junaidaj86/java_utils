@@ -21,3 +21,10 @@ pipelines:
           script:
             - cd credit-micro-service
             - mvn -s ../settings.xml clean install -Dpmd.skip=true
+            - docker build -f src/main/docker/Dockerfile.jvm -t ndm/credit-micro-service .
+            - export TAG_ID=${BITBUCKET_BUILD_NUMBER}.${BITBUCKET_COMMIT}
+            - pipe: atlassian/aws-ecr-push-image:1.2.0
+              variables:
+                AWS_DEFAULT_REGION: 'eu-west-1' # Optional if already defined in the context.
+                IMAGE_NAME: "ndm/credit-micro-service"
+                TAGS: $TAG_ID
