@@ -6,6 +6,7 @@ RUN apk update && \
     apk upgrade --available && \
     sync
 
+
 ONBUILD RUN apk update && \
     apk add --upgrade apk-tools && \
     apk upgrade --available --ignore openjdk17 openjdk17-jmods openjdk17-demos openjdk17-doc java-common java-cacerts openjdk17-jre-headless openjdk17-jre openjdk17-jdk && \
@@ -27,5 +28,9 @@ RUN wget http://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/ap
   tar -zxvf apache-maven-$MAVEN_VERSION-bin.tar.gz && \
   rm apache-maven-$MAVEN_VERSION-bin.tar.gz && \
   mv apache-maven-$MAVEN_VERSION /usr/lib/mvn
+
+# Install aws-cli
+RUN apk add --no-cache aws-cli
+
 
 ENTRYPOINT ["/bin/ash", "-c"]

@@ -29,4 +29,8 @@ RUN wget http://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/ap
   mv apache-maven-$MAVEN_VERSION /usr/lib/mvn
 
 
+# Install aws-cli
+RUN apk add --no-cache aws-cli
+
+
 ENTRYPOINT ["/bin/ash", "-c"]
