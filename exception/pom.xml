@@ -8,7 +8,6 @@
         <groupId>com.postnord.ndm.base</groupId>
         <artifactId>lib-compile-root</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath/>
     </parent>
 
     <artifactId>exception</artifactId>
