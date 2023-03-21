@@ -1,8 +1,4 @@
-FROM maven:3.8.6-openjdk-11-slim
-
-# Install unzip
-RUN apt-get update \
- && apt-get install wget unzip zip -y
+FROM maven:3.8.6-openjdk-11
 
 # Install aws-cli
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
