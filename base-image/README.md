@@ -16,7 +16,6 @@
     docker push 043970611749.dkr.ecr.eu-west-1.amazonaws.com/ndm/java17-maven-base:latest
 
 
-
 ## Login into Amazon ECR first to public registry
 
     aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/a1t5b6y5

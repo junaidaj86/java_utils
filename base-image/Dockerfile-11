@@ -1,36 +1,12 @@
-FROM alpine:3.17.2
+FROM maven:3.8.6-openjdk-11-slim
 
-# Update packages
-RUN apk update && \
-    apk add --upgrade apk-tools && \
-    apk upgrade --available && \
-    sync
-
-ONBUILD RUN apk update && \
-    apk add --upgrade apk-tools && \
-    apk upgrade --available --ignore openjdk11 openjdk11-jmods openjdk11-demos openjdk11-doc java-common java-cacerts openjdk11-jre-headless openjdk11-jre openjdk11-jdk && \
-    sync
-
-
-# Install OpenJDK 11
-RUN apk --no-cache add openjdk11
-ENV HOME /root
-ENV LANG en_US.UTF-8
-ENV LC_ALL en_US.UTF-8
-
-# Install Maven 3.8.1
-ENV MAVEN_VERSION 3.8.1
-ENV MAVEN_HOME /usr/lib/mvn
-ENV PATH $MAVEN_HOME/bin:$PATH
-
-RUN wget http://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz && \
-  tar -zxvf apache-maven-$MAVEN_VERSION-bin.tar.gz && \
-  rm apache-maven-$MAVEN_VERSION-bin.tar.gz && \
-  mv apache-maven-$MAVEN_VERSION /usr/lib/mvn
-
+# Install unzip
+RUN apt-get update \
+ && apt-get install wget unzip zip -y
 
 # Install aws-cli
-RUN apk add --no-cache aws-cli
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
+    unzip awscliv2.zip && \
+    ./aws/install -i /usr/local/aws-cli -b /usr/local/bin
 
-
-ENTRYPOINT ["/bin/ash", "-c"]
+ENTRYPOINT ["/bin/sh", "-c"]
