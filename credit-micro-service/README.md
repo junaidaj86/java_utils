@@ -1,7 +1,7 @@
 
 OpenJDK 17  
 Apache Maven 3.8.1
-Quarkus 2.16.3-Final
+Quarkus 2.16.4-Final
 Strimzi Kafka
 PostgreSQL 13.4
 
