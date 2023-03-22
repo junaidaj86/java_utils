@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8/openjdk-17
+FROM public.ecr.aws/a1t5b6y5/ndm/java17-maven-base:latest
 
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en'
 
