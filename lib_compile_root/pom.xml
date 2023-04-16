@@ -67,6 +67,14 @@
             </dependency>
 
             <dependency>
+                <groupId>${quarkus.platform.group-id}</groupId>
+                <artifactId>quarkus-camel-bom</artifactId>
+                <version>${quarkus.platform.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
                 <groupId>io.quarkiverse.loggingjson</groupId>
                 <artifactId>quarkus-logging-json</artifactId>
                 <version>${quarkiverse.json-logging.version}</version>
