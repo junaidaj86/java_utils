@@ -7,6 +7,7 @@ import com.postnord.ndm.base.logger.model.LogRecord;
 
 import java.net.URI;
 
+import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import javax.ws.rs.NotAcceptableException;
 import javax.ws.rs.core.Response;
@@ -20,7 +21,7 @@ import static javax.ws.rs.core.Response.Status.NOT_ACCEPTABLE;
 public class NotAcceptableExceptionMapper implements ExceptionMapper<NotAcceptableException> {
 
     @Inject
-    MapperConfiguration mapperConfiguration;
+    Instance<MapperConfiguration> mapperConfiguration;
 
     @Override
     public Response toResponse(final NotAcceptableException exception) {
@@ -28,7 +29,7 @@ public class NotAcceptableExceptionMapper implements ExceptionMapper<NotAcceptab
         NdmLogger.warn(LogRecord
                 .builder()
                 .exception(exception)
-                .category(mapperConfiguration.logCategory())
+                .category(mapperConfiguration.get().logCategory())
                 .build());
 
         return ProblemResponse.builder()

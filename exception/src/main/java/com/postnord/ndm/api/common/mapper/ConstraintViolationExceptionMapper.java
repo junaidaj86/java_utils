@@ -6,6 +6,7 @@ import com.postnord.ndm.api.common.problem.ProblemResponse;
 import com.postnord.ndm.base.logger.NdmLogger;
 import com.postnord.ndm.base.logger.model.LogRecord;
 
+import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
@@ -29,7 +30,7 @@ public class ConstraintViolationExceptionMapper implements ExceptionMapper<Const
     private static final String VIOLATION_OCCURRED = "Violation occurred";
 
     @Inject
-    MapperConfiguration mapperConfiguration;
+    Instance<MapperConfiguration> mapperConfiguration;
 
     @Override
     public Response toResponse(final ConstraintViolationException exception) {
@@ -43,7 +44,7 @@ public class ConstraintViolationExceptionMapper implements ExceptionMapper<Const
             NdmLogger.warn(LogRecord
                     .builder()
                     .message(VIOLATION_OCCURRED)
-                    .category(mapperConfiguration.logCategory())
+                    .category(mapperConfiguration.get().logCategory())
                     .extraData(Map.of("Violation", parseMessageFromViolation(violation)))
                     .build());
 
@@ -53,7 +54,7 @@ public class ConstraintViolationExceptionMapper implements ExceptionMapper<Const
 
             NdmLogger.warn(LogRecord
                     .builder()
-                    .category(mapperConfiguration.logCategory())
+                    .category(mapperConfiguration.get().logCategory())
                     .exception(exception)
                     .build());
 

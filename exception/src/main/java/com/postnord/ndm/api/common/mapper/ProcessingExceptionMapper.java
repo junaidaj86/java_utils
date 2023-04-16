@@ -8,6 +8,7 @@ import com.postnord.ndm.base.logger.model.LogRecord;
 import java.net.URI;
 import java.util.Optional;
 
+import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import javax.json.stream.JsonParsingException;
 import javax.ws.rs.ProcessingException;
@@ -23,14 +24,14 @@ import static javax.ws.rs.core.Response.Status.INTERNAL_SERVER_ERROR;
 public class ProcessingExceptionMapper implements ExceptionMapper<ProcessingException> {
 
     @Inject
-    MapperConfiguration mapperConfiguration;
+    Instance<MapperConfiguration> mapperConfiguration;
 
     @Override
     public Response toResponse(final ProcessingException exception) {
         NdmLogger.warn(LogRecord
                 .builder()
                 .exception(exception)
-                .category(mapperConfiguration.logCategory())
+                .category(mapperConfiguration.get().logCategory())
                 .build());
 
         final Optional<JsonParsingException> jsonParsingException = extractJsonParsingException(exception);

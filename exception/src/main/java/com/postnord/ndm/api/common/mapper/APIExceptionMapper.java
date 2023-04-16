@@ -6,6 +6,7 @@ import com.postnord.ndm.api.common.problem.ProblemResponse;
 import com.postnord.ndm.base.logger.NdmLogger;
 import com.postnord.ndm.base.logger.model.LogRecord;
 
+import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
@@ -17,7 +18,7 @@ import java.net.URI;
 public class APIExceptionMapper implements ExceptionMapper<APIException> {
 
     @Inject
-    MapperConfiguration mapperConfiguration;
+    Instance<MapperConfiguration> mapperConfiguration;
 
     @Override
     public Response toResponse(final APIException exception) {
@@ -25,7 +26,7 @@ public class APIExceptionMapper implements ExceptionMapper<APIException> {
         NdmLogger.warn(LogRecord
                 .builder()
                 .exception(exception)
-                .category(mapperConfiguration.logCategory())
+                .category(mapperConfiguration.get().logCategory())
                 .build());
 
         return ProblemResponse.builder()

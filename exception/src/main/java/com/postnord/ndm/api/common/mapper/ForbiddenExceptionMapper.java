@@ -5,6 +5,7 @@ import com.postnord.ndm.api.common.problem.ProblemResponse;
 import com.postnord.ndm.base.logger.NdmLogger;
 import com.postnord.ndm.base.logger.model.LogRecord;
 
+import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import javax.ws.rs.ForbiddenException;
 import javax.ws.rs.core.Response;
@@ -15,11 +16,11 @@ import java.net.URI;
 import static javax.ws.rs.core.Response.Status.FORBIDDEN;
 
 @Provider
-@SuppressWarnings("PMD.GuardLogStatement")
+@SuppressWarnings({"PMD.GuardLogStatement", "CPD-START"})
 public class ForbiddenExceptionMapper implements ExceptionMapper<ForbiddenException> {
 
     @Inject
-    MapperConfiguration mapperConfiguration;
+    Instance<MapperConfiguration> mapperConfiguration;
 
     @Override
     public Response toResponse(final ForbiddenException exception) {
@@ -27,7 +28,7 @@ public class ForbiddenExceptionMapper implements ExceptionMapper<ForbiddenExcept
         NdmLogger.warn(LogRecord
                 .builder()
                 .exception(exception)
-                .category(mapperConfiguration.logCategory())
+                .category(mapperConfiguration.get().logCategory())
                 .build());
 
         return ProblemResponse.builder()

@@ -7,6 +7,7 @@ import com.postnord.ndm.base.logger.model.LogRecord;
 
 import java.net.URI;
 
+import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import javax.ws.rs.NotAuthorizedException;
 import javax.ws.rs.core.Response;
@@ -20,7 +21,7 @@ import static javax.ws.rs.core.Response.Status.UNAUTHORIZED;
 public class NotAuthorizedExceptionMapper implements ExceptionMapper<NotAuthorizedException> {
 
     @Inject
-    MapperConfiguration mapperConfiguration;
+    Instance<MapperConfiguration> mapperConfiguration;
 
     @Override
     public Response toResponse(final NotAuthorizedException exception) {
@@ -28,7 +29,7 @@ public class NotAuthorizedExceptionMapper implements ExceptionMapper<NotAuthoriz
         NdmLogger.warn(LogRecord
                 .builder()
                 .exception(exception)
-                .category(mapperConfiguration.logCategory())
+                .category(mapperConfiguration.get().logCategory())
                 .build());
 
         return ProblemResponse.builder()

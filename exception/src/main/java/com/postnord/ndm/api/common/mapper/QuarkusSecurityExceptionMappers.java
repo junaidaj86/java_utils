@@ -9,6 +9,7 @@ import org.jboss.resteasy.reactive.server.ServerExceptionMapper;
 
 import java.net.URI;
 
+import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.Provider;
@@ -22,14 +23,14 @@ import static javax.ws.rs.core.Response.Status.FORBIDDEN;
 public class QuarkusSecurityExceptionMappers {
 
     @Inject
-    MapperConfiguration mapperConfiguration;
+    Instance<MapperConfiguration> mapperConfiguration;
 
     @ServerExceptionMapper
     public Response mapException(final ForbiddenException exception) {
         NdmLogger.warn(LogRecord
                 .builder()
                 .exception(exception)
-                .category(mapperConfiguration.logCategory())
+                .category(mapperConfiguration.get().logCategory())
                 .build());
 
         return ProblemResponse.builder()

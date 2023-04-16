@@ -7,6 +7,7 @@ import com.postnord.ndm.base.logger.model.LogRecord;
 
 import java.net.URI;
 
+import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import javax.ws.rs.NotAllowedException;
 import javax.ws.rs.core.Response;
@@ -20,7 +21,7 @@ import static javax.ws.rs.core.Response.Status.METHOD_NOT_ALLOWED;
 public class NotAllowedExceptionMapper implements ExceptionMapper<NotAllowedException> {
 
     @Inject
-    MapperConfiguration mapperConfiguration;
+    Instance<MapperConfiguration> mapperConfiguration;
 
     @Override
     public Response toResponse(final NotAllowedException exception) {
@@ -28,7 +29,7 @@ public class NotAllowedExceptionMapper implements ExceptionMapper<NotAllowedExce
         NdmLogger.warn(LogRecord
                 .builder()
                 .exception(exception)
-                .category(mapperConfiguration.logCategory())
+                .category(mapperConfiguration.get().logCategory())
                 .build());
 
         return ProblemResponse.builder()
