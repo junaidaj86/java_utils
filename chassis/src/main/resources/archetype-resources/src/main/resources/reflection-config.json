@@ -1,0 +1,10 @@
+[
+    {
+        "name": "com.postnord.ndm.api.common.problem.Problem",
+        "allPublicMethods": true
+    },
+    {
+        "name": "com.postnord.ndm.base.scrolling.model.Scrollable",
+        "allPublicMethods": true
+    }
+]
