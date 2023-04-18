@@ -267,30 +267,6 @@
             <build>
                 <plugins>
                     <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-dependency-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>copy-openapi-generator-templates</id>
-                                <phase>generate-sources</phase>
-                                <goals>
-                                    <goal>unpack</goal>
-                                </goals>
-                                <configuration>
-                                    <artifactItems>
-                                        <artifactItem>
-                                            <groupId>com.postnord.ndm.base</groupId>
-                                            <artifactId>openapi</artifactId>
-                                            <type>jar</type>
-                                            <outputDirectory>${project.build.directory}</outputDirectory>
-                                            <includes>**/*.mustache</includes>
-                                        </artifactItem>
-                                    </artifactItems>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
                         <groupId>org.openapitools</groupId>
                         <artifactId>openapi-generator-maven-plugin</artifactId>
                         <executions>
@@ -308,9 +284,6 @@
                                         ${project.build.directory}/generated-sources/openapi
                                     </output>
                                     <generatorName>jaxrs-spec</generatorName>
-                                    <templateDirectory>
-                                        ${project.build.directory}/openapi-generator-templates
-                                    </templateDirectory>
                                     <generateApiTests>false</generateApiTests>
                                     <skipOverwrite>true</skipOverwrite>
                                     <generateModelTests>false</generateModelTests>
@@ -391,30 +364,6 @@
             <build>
                 <plugins>
                     <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-dependency-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>copy-openapi-generator-templates-for-tests</id>
-                                <phase>generate-test-sources</phase>
-                                <goals>
-                                    <goal>unpack</goal>
-                                </goals>
-                                <configuration>
-                                    <artifactItems>
-                                        <artifactItem>
-                                            <groupId>com.postnord.ndm.base</groupId>
-                                            <artifactId>openapi</artifactId>
-                                            <type>jar</type>
-                                            <outputDirectory>${project.build.directory}</outputDirectory>
-                                            <includes>**/*.mustache</includes>
-                                        </artifactItem>
-                                    </artifactItems>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
                         <groupId>org.openapitools</groupId>
                         <artifactId>openapi-generator-maven-plugin</artifactId>
                         <executions>
@@ -432,9 +381,6 @@
                                         ${project.build.directory}/generated-test-sources/openapi
                                     </output>
                                     <generatorName>jaxrs-spec</generatorName>
-                                    <templateDirectory>
-                                        ${project.build.directory}/openapi-generator-templates
-                                    </templateDirectory>
                                     <generateApiTests>false</generateApiTests>
                                     <skipOverwrite>true</skipOverwrite>
                                     <generateModelTests>false</generateModelTests>
