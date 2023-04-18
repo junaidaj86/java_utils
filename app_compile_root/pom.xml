@@ -283,10 +283,10 @@
                                     <output>
                                         ${project.build.directory}/generated-sources/openapi
                                     </output>
-                                    <skipValidateSpec>true</skipValidateSpec>
                                     <generatorName>jaxrs-spec</generatorName>
                                     <generateApiTests>false</generateApiTests>
-                                    <skipOverwrite>true</skipOverwrite>
+                                    <addCompileSourceRoot>true</addCompileSourceRoot>
+                                    <ignoreFileOverride>${project.basedir}</ignoreFileOverride>
                                     <generateModelTests>false</generateModelTests>
                                     <generateSupportingFiles>false</generateSupportingFiles>
                                     <generateModelDocumentation>false</generateModelDocumentation>
@@ -301,13 +301,24 @@
                                     </importMappings>
                                     <configOptions>
                                         <library>quarkus</library>
-                                        <java8>true</java8>
-                                        <dateLibrary>java8</dateLibrary>
+                                        <additionalModelTypeAnnotations>
+                                            @io.quarkus.runtime.annotations.RegisterForReflection
+                                            @lombok.Builder
+                                            @lombok.NoArgsConstructor
+                                            @lombok.AllArgsConstructor
+                                        </additionalModelTypeAnnotations>
+                                        <generateBuilders>false</generateBuilders>
+                                        <hideGenerationTimestamp>true
+                                        </hideGenerationTimestamp>
+                                        <generateModels>true</generateModels>
+                                        <generateSupportingFiles>false
+                                        </generateSupportingFiles>
                                         <interfaceOnly>true</interfaceOnly>
-                                        <useSwaggerAnnotations>false</useSwaggerAnnotations>
-                                        <useBeanValidation>true</useBeanValidation>
-                                        <hideGenerationTimestamp>false</hideGenerationTimestamp>
-                                        <openApiNullable>false</openApiNullable>
+                                        <useSwaggerAnnotations>false
+                                        </useSwaggerAnnotations>
+                                        <useLombok>true</useLombok>
+                                        <dateLibrary>java8</dateLibrary>
+                                        <returnResponse>true</returnResponse>
                                     </configOptions>
                                 </configuration>
                             </execution>
@@ -346,96 +357,6 @@
                                     <sources>
                                         <source>
                                             ${project.build.directory}/generated-sources/openapi/src/gen/java
-                                        </source>
-                                    </sources>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>generate-api-for-tests</id>
-            <activation>
-                <file>
-                    <exists>generate-api-for-tests</exists>
-                </file>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.openapitools</groupId>
-                        <artifactId>openapi-generator-maven-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>generate-test-api</id>
-                                <phase>generate-test-sources</phase>
-                                <goals>
-                                    <goal>generate</goal>
-                                </goals>
-                                <configuration>
-                                    <inputSpec>
-                                        ${basedir}/src/main/resources/META-INF/openapi.yaml
-                                    </inputSpec>
-                                    <output>
-                                        ${project.build.directory}/generated-test-sources/openapi
-                                    </output>
-                                    <skipValidateSpec>true</skipValidateSpec>
-                                    <generatorName>jaxrs-spec</generatorName>
-                                    <generateApiTests>false</generateApiTests>
-                                    <skipOverwrite>true</skipOverwrite>
-                                    <generateModelTests>false</generateModelTests>
-                                    <generateSupportingFiles>false</generateSupportingFiles>
-                                    <generateModelDocumentation>false</generateModelDocumentation>
-                                    <generateApis>false</generateApis>
-                                    <modelPackage>com.postnord.ndm.test.model</modelPackage>
-                                    <configOptions>
-                                        <library>quarkus</library>
-                                        <java8>true</java8>
-                                        <dateLibrary>java8</dateLibrary>
-                                        <interfaceOnly>true</interfaceOnly>
-                                        <useSwaggerAnnotations>false</useSwaggerAnnotations>
-                                        <useBeanValidation>false</useBeanValidation>
-                                        <hideGenerationTimestamp>false</hideGenerationTimestamp>
-                                    </configOptions>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>net.revelc.code</groupId>
-                        <artifactId>impsort-maven-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>sort-test-api-imports</id>
-                                <phase>generate-test-sources</phase>
-                                <goals>
-                                    <goal>sort</goal>
-                                </goals>
-                                <configuration>
-                                    <directories>
-                                        <directory>${project.build.directory}/generated-test-sources/openapi</directory>
-                                    </directories>
-                                    <removeUnused>true</removeUnused>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>build-helper-maven-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>add-test-sources</id>
-                                <phase>generate-test-sources</phase>
-                                <goals>
-                                    <goal>add-test-source</goal>
-                                </goals>
-                                <configuration>
-                                    <sources>
-                                        <source>
-                                            ${project.build.directory}/generated-test-sources/openapi/src/gen/java
                                         </source>
                                     </sources>
                                 </configuration>
