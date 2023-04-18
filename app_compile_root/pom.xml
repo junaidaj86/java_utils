@@ -145,67 +145,6 @@
 
     <profiles>
         <profile>
-            <id>liquibase</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.liquibase</groupId>
-                        <artifactId>liquibase-maven-plugin</artifactId>
-                        <configuration>
-                            <url>${liquibase.db.url}</url>
-                            <username>${liquibase.db.username}</username>
-                            <password>${liquibase.db.password}</password>
-                            <changeLogFile>src/main/resources/db/changeLog.yaml</changeLogFile>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <id>gen-baseline</id>
-                                <goals>
-                                    <goal>generateChangeLog</goal>
-                                </goals>
-                                <configuration>
-                                    <defaultSchemaName>${liquibase.db.dev-schema}</defaultSchemaName>
-                                    <outputChangeLogFile>target/changeLog.generated.yaml</outputChangeLogFile>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>dev-diff</id>
-                                <goals>
-                                    <goal>diff</goal>
-                                </goals>
-                                <configuration>
-                                    <referenceUrl>${liquibase.db.url}</referenceUrl>
-                                    <referenceUsername>${liquibase.db.username}</referenceUsername>
-                                    <referencePassword>${liquibase.db.password}</referencePassword>
-                                    <referenceDefaultSchemaName>${liquibase.db.dev-schema}</referenceDefaultSchemaName>
-                                    <diffChangeLogFile>target/changeLog.diff.yaml</diffChangeLogFile>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>drop-runtime</id>
-                                <goals>
-                                    <goal>dropAll</goal>
-                                </goals>
-                                <configuration>
-                                    <schemas>${liquibase.db.username}</schemas>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>drop-dev</id>
-                                <goals>
-                                    <goal>dropAll</goal>
-                                </goals>
-                                <configuration>
-                                    <schemas>${liquibase.db.dev-schema}
-                                    </schemas>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
             <id>native</id>
             <activation>
                 <property>
