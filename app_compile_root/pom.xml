@@ -285,7 +285,6 @@
                                     </output>
                                     <generatorName>jaxrs-spec</generatorName>
                                     <generateApiTests>false</generateApiTests>
-                                    <addCompileSourceRoot>true</addCompileSourceRoot>
                                     <ignoreFileOverride>${project.basedir}</ignoreFileOverride>
                                     <generateModelTests>false</generateModelTests>
                                     <generateSupportingFiles>false</generateSupportingFiles>
@@ -299,24 +298,18 @@
                                     <importMappings>
                                         <importMapping>java.time.OffsetDateTime=java.time.Instant</importMapping>
                                     </importMappings>
+                                    <addCompileSourceRoot>true</addCompileSourceRoot>
                                     <configOptions>
                                         <library>quarkus</library>
                                         <additionalModelTypeAnnotations>
                                             @io.quarkus.runtime.annotations.RegisterForReflection
-                                            @lombok.Builder
-                                            @lombok.NoArgsConstructor
-                                            @lombok.AllArgsConstructor
                                         </additionalModelTypeAnnotations>
                                         <generateBuilders>false</generateBuilders>
-                                        <hideGenerationTimestamp>true
-                                        </hideGenerationTimestamp>
+                                        <hideGenerationTimestamp>true</hideGenerationTimestamp>
                                         <generateModels>true</generateModels>
-                                        <generateSupportingFiles>false
-                                        </generateSupportingFiles>
+                                        <generateSupportingFiles>false</generateSupportingFiles>
                                         <interfaceOnly>true</interfaceOnly>
-                                        <useSwaggerAnnotations>false
-                                        </useSwaggerAnnotations>
-                                        <useLombok>true</useLombok>
+                                        <useSwaggerAnnotations>false</useSwaggerAnnotations>
                                         <dateLibrary>java8</dateLibrary>
                                         <returnResponse>true</returnResponse>
                                     </configOptions>

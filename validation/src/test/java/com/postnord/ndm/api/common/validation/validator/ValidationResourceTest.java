@@ -1,12 +1,11 @@
 package com.postnord.ndm.api.common.validation.validator;
 
+import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;
 
 import java.net.URI;
 import java.util.List;
 import java.util.Map;
-
-import io.quarkus.test.junit.QuarkusTest;
 
 import static io.restassured.RestAssured.given;
 import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
@@ -39,8 +38,6 @@ class ValidationResourceTest {
     private static final String INVALID_NOT_ALLOWED_ICCID = "89430300000482738073";//check digit incorrect
     private static final String VALID_ALLOWED_REGEX = "1h"; //valid regex is 1 digit and either m or h
     private static final String INVALID_NOT_ALLOWED_REGEX = "xxx10d";
-    private static final String ARG_0 = "arg0";
-
 
     @Test
     void testWhenInvalidEuiccIsSpecifiedThenProblemIsReturnedCorrectly() {
@@ -52,9 +49,8 @@ class ValidationResourceTest {
                 .statusCode(BAD_REQUEST.getStatusCode())
                 .body(DETAIL, is(INVALID_REQUEST))
                 .body(INSTANCE, is(UNSET))
-                .body(PARAMETERS, is(Map.of(INVALID_PARAMS, List.of(getViolationObject(ARG_0,
-                        "Invalid IOTEidString. IOTEidString must be 20-30 hexadecimal characters or " +
-                                "32 hexadecimal characters in length.")))))
+                .body(PARAMETERS, is(Map.of(INVALID_PARAMS, List.of(getViolationObject("mustBeValidEuicc",
+                        "Invalid IOTEidString. IOTEidString must be 20-30 hexadecimal characters or 32 hexadecimal characters in length.")))))
                 .body(STATUS, is(BAD_REQUEST.getStatusCode()))
                 .body(TITLE, is(BAD_REQUEST.getReasonPhrase()))
                 .body(TYPE, is(BAD_REQUEST_PROBLEM_TYPE));
@@ -81,9 +77,8 @@ class ValidationResourceTest {
                 .statusCode(BAD_REQUEST.getStatusCode())
                 .body(DETAIL, is(INVALID_REQUEST))
                 .body(INSTANCE, is(UNSET))
-                .body(PARAMETERS, is(Map.of(INVALID_PARAMS, List.of(getViolationObject(ARG_0,
-                        "Invalid 'iccId'. " +
-                                "It should be 19-20 characters in length.")))))
+                .body(PARAMETERS, is(Map.of(INVALID_PARAMS, List.of(getViolationObject("mustBeValidIccid",
+                        "Invalid 'iccId'. It should be 19-20 characters in length.")))))
                 .body(STATUS, is(BAD_REQUEST.getStatusCode()))
                 .body(TITLE, is(BAD_REQUEST.getReasonPhrase()))
                 .body(TYPE, is(BAD_REQUEST_PROBLEM_TYPE));
@@ -110,7 +105,7 @@ class ValidationResourceTest {
                 .statusCode(BAD_REQUEST.getStatusCode())
                 .body(DETAIL, is(INVALID_REQUEST))
                 .body(INSTANCE, is(UNSET))
-                .body(PARAMETERS, is(Map.of(INVALID_PARAMS, List.of(getViolationObject(ARG_0,
+                .body(PARAMETERS, is(Map.of(INVALID_PARAMS, List.of(getViolationObject("mustBeUuid",
                         "String is not in UUID4 format.")))))
                 .body(STATUS, is(BAD_REQUEST.getStatusCode()))
                 .body(TITLE, is(BAD_REQUEST.getReasonPhrase()))
@@ -138,7 +133,7 @@ class ValidationResourceTest {
                 .statusCode(BAD_REQUEST.getStatusCode())
                 .body(DETAIL, is(INVALID_REQUEST))
                 .body(INSTANCE, is(UNSET))
-                .body(PARAMETERS, is(Map.of(INVALID_PARAMS, List.of(getViolationObject(ARG_0,
+                .body(PARAMETERS, is(Map.of(INVALID_PARAMS, List.of(getViolationObject("mustMatchRegex",
                         "must be 4m or 4h")))))
                 .body(STATUS, is(BAD_REQUEST.getStatusCode()))
                 .body(TITLE, is(BAD_REQUEST.getReasonPhrase()))
