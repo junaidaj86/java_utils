@@ -283,6 +283,7 @@
                                     <output>
                                         ${project.build.directory}/generated-sources/openapi
                                     </output>
+                                    <skipValidateSpec>true</skipValidateSpec>
                                     <generatorName>jaxrs-spec</generatorName>
                                     <generateApiTests>false</generateApiTests>
                                     <skipOverwrite>true</skipOverwrite>
@@ -380,6 +381,7 @@
                                     <output>
                                         ${project.build.directory}/generated-test-sources/openapi
                                     </output>
+                                    <skipValidateSpec>true</skipValidateSpec>
                                     <generatorName>jaxrs-spec</generatorName>
                                     <generateApiTests>false</generateApiTests>
                                     <skipOverwrite>true</skipOverwrite>
