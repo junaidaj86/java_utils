@@ -30,16 +30,15 @@
 
 
     <properties>
-        <kafka.deserializer>${package}.kafkaManager.handler.EventDeserializer</kafka.deserializer>
         <openapi.api.package>${package}.api</openapi.api.package>
         <openapi.model.package>${package}.api.model</openapi.model.package>
         <docker.image.release.stage>dev</docker.image.release.stage>
         <pmd.project.groupId>${groupId}</pmd.project.groupId>
         <pmd.project.artifactId>${artifactId}</pmd.project.artifactId>
         <sonar.sources.base>pom.xml,src/main</sonar.sources.base>
-        <sonar.sources>${sonar.sources.base},PRODUCT_INFO.yml</sonar.sources>
+        <sonar.sources>${sonar.sources.base}</sonar.sources>
         <sonar.exclusions>src/main/resources/META-INF/openapi.yaml</sonar.exclusions>
-        <testcontainer.version>1.17.6</testcontainer.version>
+        <testcontainer.version>1.18.0</testcontainer.version>
     </properties>
 
     <dependencies>
