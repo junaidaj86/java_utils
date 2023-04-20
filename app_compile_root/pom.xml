@@ -304,7 +304,7 @@
                                         <additionalModelTypeAnnotations>
                                             @io.quarkus.runtime.annotations.RegisterForReflection
                                         </additionalModelTypeAnnotations>
-                                        <generateBuilders>false</generateBuilders>
+                                        <generateBuilders>true</generateBuilders>
                                         <hideGenerationTimestamp>true</hideGenerationTimestamp>
                                         <generateModels>true</generateModels>
                                         <generateSupportingFiles>false</generateSupportingFiles>
