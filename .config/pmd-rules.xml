@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ruleset name="iota-rules"
+<?xml version="1.0"?>
+<ruleset name="ndm-rules"
          xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
@@ -13,11 +13,13 @@
         <!-- These are deprecated and must be excluded. -->
         <exclude name="PositionLiteralsFirstInCaseInsensitiveComparisons"/>
         <exclude name="PositionLiteralsFirstInComparisons"/>
+        <exclude name="GuardLogStatement"/>
 
         <!-- This section should be trimmed to the bare minimum. -->
         <exclude name="JUnitAssertionsShouldIncludeMessage"/>
         <exclude name="JUnitTestContainsTooManyAsserts"/>
         <exclude name="JUnitTestsShouldIncludeAssert"/>
+        <exclude name="AbstractClassWithoutAbstractMethod"/>
     </rule>
 
     <!-- https://github.com/pmd/pmd/blob/master/pmd-java/src/main/resources/category/java/codestyle.xml -->
@@ -34,6 +36,7 @@
         <exclude name="SuspiciousConstantFieldName"/>
         <exclude name="VariableNamingConventions"/>
         <exclude name="WhileLoopsMustUseBraces"/>
+
 
         <!-- This section should be trimmed to the bare minimum. -->
         <exclude name="AtLeastOneConstructor"/>
@@ -53,6 +56,7 @@
         <exclude name="NcssMethodCount"/>
         <exclude name="NcssTypeCount"/>
         <exclude name="StdCyclomaticComplexity"/>
+
 
         <!-- This is excluded as it requires extra configuration. -->
         <exclude name="LoosePackageCoupling"/>
@@ -77,6 +81,7 @@
         <!-- These are deprecated and must be excluded. -->
         <exclude name="DataflowAnomalyAnalysis"/>
         <exclude name="LoggerIsNotStaticFinal"/>
+        <exclude name="MissingStaticMethodInNonInstantiatableClass"/>
 
         <!-- This section should be trimmed to the bare minimum. -->
         <exclude name="BeanMembersShouldSerialize"/>
