@@ -267,28 +267,6 @@
             <build>
                 <plugins>
                     <plugin>
-                        <groupId>org.jsonschema2pojo</groupId>
-                        <artifactId>jsonschema2pojo-maven-plugin</artifactId>
-                        <version>${jsonschema2pojo.version}</version>
-                        <configuration>
-                            <annotationStyle>none</annotationStyle>
-                            <dateTimeType>java.lang.String</dateTimeType>
-                            <sourceDirectory>
-                                ${basedir}/src/main/resources/schema/
-                            </sourceDirectory>
-                            <targetPackage>com.postnord.ndm.api.model</targetPackage>
-                            <classNameSuffix>Dto</classNameSuffix>
-                            <generateBuilders>true</generateBuilders>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>generate</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
                         <groupId>org.openapitools</groupId>
                         <artifactId>openapi-generator-maven-plugin</artifactId>
                         <executions>
