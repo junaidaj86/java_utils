@@ -271,12 +271,12 @@
                         <artifactId>jsonschema2pojo-maven-plugin</artifactId>
                         <version>${jsonschema2pojo.version}</version>
                         <configuration>
+                            <annotationStyle>none</annotationStyle>
                             <dateTimeType>java.lang.String</dateTimeType>
                             <sourceDirectory>
                                 ${basedir}/src/main/resources/schema/
                             </sourceDirectory>
-                            <targetPackage>com.postnord.ndm.api.model
-                            </targetPackage>
+                            <targetPackage>com.postnord.ndm.api.model</targetPackage>
                             <classNameSuffix>Dto</classNameSuffix>
                             <generateBuilders>true</generateBuilders>
                         </configuration>
@@ -323,6 +323,7 @@
                                     <addCompileSourceRoot>true</addCompileSourceRoot>
                                     <configOptions>
                                         <library>quarkus</library>
+                                        <serializationLibrary>jsonb</serializationLibrary>
                                         <additionalModelTypeAnnotations>
                                             @io.quarkus.runtime.annotations.RegisterForReflection
                                         </additionalModelTypeAnnotations>
