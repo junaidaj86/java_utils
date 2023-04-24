@@ -40,7 +40,7 @@
         <fast.jar.directory>quarkus-app</fast.jar.directory>
         <fast.jar.name>quarkus-run.jar</fast.jar.name>
         <maven.dependency.plugin.version>3.1.2</maven.dependency.plugin.version>
-
+        <jsonschema2pojo.version>1.2.1</jsonschema2pojo.version>
         <sonar.sources>${sonar.sources.base}</sonar.sources>
     </properties>
 
@@ -267,6 +267,28 @@
             <build>
                 <plugins>
                     <plugin>
+                        <groupId>org.jsonschema2pojo</groupId>
+                        <artifactId>jsonschema2pojo-maven-plugin</artifactId>
+                        <version>${jsonschema2pojo.version}</version>
+                        <configuration>
+                            <dateTimeType>java.lang.String</dateTimeType>
+                            <sourceDirectory>
+                                ${basedir}/src/main/resources/schema/
+                            </sourceDirectory>
+                            <targetPackage>com.postnord.ndm.api.model
+                            </targetPackage>
+                            <classNameSuffix>Dto</classNameSuffix>
+                            <generateBuilders>true</generateBuilders>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>generate</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
                         <groupId>org.openapitools</groupId>
                         <artifactId>openapi-generator-maven-plugin</artifactId>
                         <executions>
@@ -350,6 +372,9 @@
                                     <sources>
                                         <source>
                                             ${project.build.directory}/generated-sources/openapi/src/gen/java
+                                        </source>
+                                        <source>
+                                            ${project.build.directory}/generated-sources/jsonschema2pojo
                                         </source>
                                     </sources>
                                 </configuration>
