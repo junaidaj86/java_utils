@@ -37,7 +37,7 @@
         <javax.el.version>3.0.1-b08</javax.el.version>
         <testcontainers.version>1.17.6</testcontainers.version>
         <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
-        <compiler-plugin.version>3.8.1</compiler-plugin.version>
+        <compiler-plugin.version>3.8.4</compiler-plugin.version>
         <maven.compiler.parameters>true</maven.compiler.parameters>
         <maven.compiler.release>17</maven.compiler.release>
         <build-helper.version>3.3.0</build-helper.version>
