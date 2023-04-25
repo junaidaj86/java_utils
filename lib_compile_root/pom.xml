@@ -45,7 +45,6 @@
         <jacoco.maven.plugin.version>0.8.8</jacoco.maven.plugin.version>
         <directory-maven-plugin.version>1.0</directory-maven-plugin.version>
         <maven-pmd-plugin.version>3.20.0</maven-pmd-plugin.version>
-        <maven-jxr-plugin.version>3.3.0</maven-jxr-plugin.version>
         <openapi-generator-maven-plugin.version>6.5.0</openapi-generator-maven-plugin.version>
         <impsort-maven-plugin.version>1.8.0</impsort-maven-plugin.version>
         <pmd.project.groupId>com.postnord.ndm</pmd.project.groupId>
@@ -316,13 +315,4 @@
             </plugin>
         </plugins>
     </build>
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jxr-plugin</artifactId>
-                <version>${maven-jxr-plugin.version}</version>
-            </plugin>
-        </plugins>
-    </reporting>
 </project>
