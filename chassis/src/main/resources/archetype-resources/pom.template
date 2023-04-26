@@ -38,7 +38,6 @@
         <sonar.sources.base>pom.xml,src/main</sonar.sources.base>
         <sonar.sources>${sonar.sources.base}</sonar.sources>
         <sonar.exclusions>src/main/resources/META-INF/openapi.yaml</sonar.exclusions>
-        <testcontainer.version>1.18.0</testcontainer.version>
     </properties>
 
     <dependencies>

@@ -2,8 +2,8 @@ package com.postnord.ndm.api.common.mapper;
 
 import org.junit.jupiter.api.Test;
 
-import javax.inject.Inject;
-import javax.ws.rs.core.Response;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.core.Response;
 
 import io.quarkus.test.junit.QuarkusTest;
 

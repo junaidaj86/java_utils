@@ -3,10 +3,10 @@ package com.postnord.ndm.base.jwt_handler.util;
 import com.postnord.ndm.base.jwt_handler.model.AccountRolesMapping;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 
-import javax.json.Json;
-import javax.json.JsonArray;
-import javax.json.JsonArrayBuilder;
-import javax.json.JsonObject;
+import jakarta.json.Json;
+import jakarta.json.JsonArray;
+import jakarta.json.JsonArrayBuilder;
+import jakarta.json.JsonObject;
 import java.util.*;
 
 @SuppressWarnings({"PMD.AvoidCatchingGenericException", "PMD.PreserveStackTrace"})

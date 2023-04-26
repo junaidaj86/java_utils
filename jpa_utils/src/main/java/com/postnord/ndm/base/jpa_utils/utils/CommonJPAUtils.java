@@ -1,8 +1,8 @@
 package com.postnord.ndm.base.jpa_utils.utils;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.Order;
-import javax.persistence.criteria.Root;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.Order;
+import jakarta.persistence.criteria.Root;
 
 public final class CommonJPAUtils {
     private static final int MIN_ORDER_STRING_LENGTH = 2;

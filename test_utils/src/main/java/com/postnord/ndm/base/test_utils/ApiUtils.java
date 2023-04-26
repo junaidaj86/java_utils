@@ -4,14 +4,14 @@ import com.postnord.ndm.base.jsonb_utils.JsonbHelper;
 import com.postnord.ndm.base.jwt_helper.JwtUtils;
 import com.postnord.ndm.base.logger.NdmLogger;
 import com.postnord.ndm.base.logger.model.LogRecord;
+import jakarta.json.Json;
+import jakarta.json.bind.Jsonb;
+import jakarta.ws.rs.client.*;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.ext.ContextResolver;
 import lombok.SneakyThrows;
 
-import javax.json.Json;
-import javax.json.bind.Jsonb;
-import javax.ws.rs.client.*;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.ext.ContextResolver;
 import java.util.Map;
 import java.util.UUID;
 
@@ -80,36 +80,36 @@ public final class ApiUtils {
      * @return The API response as object of type responseClass
      */
     public static <R> R get(final String path, final UUID accountId, final String role, final Class<R> responseClass) {
-        final Client client = createJsonbClient();
-        final WebTarget target = client.target(path);
-        final Invocation.Builder builder = target
-                .request(MediaType.APPLICATION_JSON)
-                .header(AUTHORIZATION_HEADER, generateTokenHeader(accountId, role));
-        NdmLogger.debug(LogRecord
-                .builder()
-                .message("Sending GET request to")
-                .extraData(Map.of(TARGET_URI, target.getUri()))
-                .build());
-        if (responseClass == null) {
-            try (Response response = builder.get()) {
-                assertEquals(404, response.getStatusInfo().getStatusCode());
+        try (Client client = createJsonbClient()) {
+            final WebTarget target = client.target(path);
+            final Invocation.Builder builder = target
+                    .request(MediaType.APPLICATION_JSON)
+                    .header(AUTHORIZATION_HEADER, generateTokenHeader(accountId, role));
+            NdmLogger.debug(LogRecord
+                    .builder()
+                    .message("Sending GET request to")
+                    .extraData(Map.of(TARGET_URI, target.getUri()))
+                    .build());
+            if (responseClass == null) {
+                try (Response response = builder.get()) {
+                    assertEquals(404, response.getStatusInfo().getStatusCode());
+                }
+                client.close();
+                return null;
             }
-            client.close();
-            return null;
+            final R response = target
+                    .request(MediaType.APPLICATION_JSON)
+                    .header(AUTHORIZATION_HEADER, generateTokenHeader(accountId, role))
+                    .get(responseClass);
+
+            NdmLogger.debug(LogRecord
+                    .builder()
+                    .message("Got GET response with")
+                    .extraData(Map.of("Response", response.toString()))
+                    .build());
+
+            return response;
         }
-        final R response = target
-                .request(MediaType.APPLICATION_JSON)
-                .header(AUTHORIZATION_HEADER, generateTokenHeader(accountId, role))
-                .get(responseClass);
-
-        NdmLogger.debug(LogRecord
-                .builder()
-                .message("Got GET response with")
-                .extraData(Map.of("Response", response.toString()))
-                .build());
-        client.close();
-
-        return response;
     }
 
     /**
@@ -124,26 +124,26 @@ public final class ApiUtils {
      * @return The API response as object of type responseClass
      */
     public static <R> R post(final String path, final UUID accountId, final String role, final Object body, final Class<R> responseClass) {
-        final Client client = createJsonbClient();
-        final WebTarget target = client.target(path);
-        NdmLogger.debug(LogRecord
-                .builder()
-                .message("Sending POST request to")
-                .extraData(Map.of(TARGET_URI, target.getUri()))
-                .build());
-        final R response = target
-                .request(MediaType.APPLICATION_JSON, APPLICATION_PROBLEM_JSON)
-                .header(AUTHORIZATION_HEADER, generateTokenHeader(accountId, role))
-                .post(Entity.entity(body, MediaType.APPLICATION_JSON), responseClass);
+        try (Client client = createJsonbClient()) {
+            final WebTarget target = client.target(path);
+            NdmLogger.debug(LogRecord
+                    .builder()
+                    .message("Sending POST request to")
+                    .extraData(Map.of(TARGET_URI, target.getUri()))
+                    .build());
+            final R response = target
+                    .request(MediaType.APPLICATION_JSON, APPLICATION_PROBLEM_JSON)
+                    .header(AUTHORIZATION_HEADER, generateTokenHeader(accountId, role))
+                    .post(Entity.entity(body, MediaType.APPLICATION_JSON), responseClass);
 
-        NdmLogger.debug(LogRecord
-                .builder()
-                .message("Got POST response with")
-                .extraData(Map.of("Response", response.toString()))
-                .build());
-        client.close();
+            NdmLogger.debug(LogRecord
+                    .builder()
+                    .message("Got POST response with")
+                    .extraData(Map.of("Response", response.toString()))
+                    .build());
 
-        return response;
+            return response;
+        }
     }
 
     /**
@@ -154,19 +154,18 @@ public final class ApiUtils {
      * @param role      the role to include in the 'resource_access' claim
      */
     public static void delete(final String path, final UUID accountId, final String role) {
-        final Client client = createJsonbClient();
-        final WebTarget target = client.target(path);
-        NdmLogger.debug(LogRecord
-                .builder()
-                .message("Sending DELETE request to")
-                .extraData(Map.of(TARGET_URI, target.getUri()))
-                .build());
-        try (Response response = target.request()
-                .accept(APPLICATION_PROBLEM_JSON)
-                .header(AUTHORIZATION_HEADER, generateTokenHeader(accountId, role)).delete()) {
-            assertEquals(204, response.getStatusInfo().getStatusCode());
-        } finally {
-            client.close();
+        try (Client client = createJsonbClient()) {
+            final WebTarget target = client.target(path);
+            NdmLogger.debug(LogRecord
+                    .builder()
+                    .message("Sending DELETE request to")
+                    .extraData(Map.of(TARGET_URI, target.getUri()))
+                    .build());
+            try (Response response = target.request()
+                    .accept(APPLICATION_PROBLEM_JSON)
+                    .header(AUTHORIZATION_HEADER, generateTokenHeader(accountId, role)).delete()) {
+                assertEquals(204, response.getStatusInfo().getStatusCode());
+            }
         }
     }
 }

@@ -2,9 +2,9 @@ package com.postnord.ndm.base.test_utils.model;
 
 import org.junit.jupiter.api.BeforeEach;
 
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+import jakarta.validation.ValidatorFactory;
 
 /**
  * AbstractConstraintValidationTest builds Validator object for usage in tests.

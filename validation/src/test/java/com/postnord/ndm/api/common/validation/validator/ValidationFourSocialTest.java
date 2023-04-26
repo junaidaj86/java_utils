@@ -14,9 +14,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /*
 Sociable unit test : This class will collaborate with its dependencies and will NOT mock them. It will use
-the real collaborator javax.validation.Validator as part of its test scope.
+the real collaborator jakarta.validation.Validator as part of its test scope.
  */
  class ValidationFourSocialTest {
 

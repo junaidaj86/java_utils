@@ -4,8 +4,8 @@ import com.postnord.ndm.api.common.validation.constraints.NdmSet;
 
 import java.util.Set;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 public class NdmSetValidator implements ConstraintValidator<NdmSet, Set> {
 

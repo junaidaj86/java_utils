@@ -3,7 +3,7 @@ package com.postnord.ndm.base.jsonb_utils;
 
 import com.postnord.ndm.base.common_utils.utils.InstantHelper;
 
-import javax.json.bind.adapter.JsonbAdapter;
+import jakarta.json.bind.adapter.JsonbAdapter;
 import java.time.Instant;
 
 public class InstantAdapter implements JsonbAdapter<Instant, String> {

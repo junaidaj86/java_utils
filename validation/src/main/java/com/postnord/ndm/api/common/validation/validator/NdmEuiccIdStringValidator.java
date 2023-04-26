@@ -2,8 +2,8 @@ package com.postnord.ndm.api.common.validation.validator;
 
 import com.postnord.ndm.api.common.validation.constraints.NdmEuiccIdString;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 public class NdmEuiccIdStringValidator implements ConstraintValidator<NdmEuiccIdString, String> {
 

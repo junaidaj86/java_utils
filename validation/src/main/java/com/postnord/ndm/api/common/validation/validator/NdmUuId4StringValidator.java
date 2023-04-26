@@ -2,8 +2,8 @@ package com.postnord.ndm.api.common.validation.validator;
 
 import com.postnord.ndm.api.common.validation.constraints.NdmUuId4String;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 public class NdmUuId4StringValidator implements ConstraintValidator<NdmUuId4String, String> {
 

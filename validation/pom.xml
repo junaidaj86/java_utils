@@ -68,7 +68,7 @@
         <!-- necessary for ModelValidatorBoundary test cases -->
         <dependency>
             <groupId>org.glassfish</groupId>
-            <artifactId>javax.el</artifactId>
+            <artifactId>jakarta.el</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>

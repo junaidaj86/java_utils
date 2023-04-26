@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
 
-import javax.json.Json;
+import jakarta.json.Json;
 
 class JsonbHelperTest {
     private static final String STRING_FIELD = "string_field";

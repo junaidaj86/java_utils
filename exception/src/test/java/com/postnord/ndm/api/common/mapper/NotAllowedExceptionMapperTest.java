@@ -2,13 +2,13 @@ package com.postnord.ndm.api.common.mapper;
 
 import org.junit.jupiter.api.Test;
 
-import javax.inject.Inject;
-import javax.ws.rs.NotAllowedException;
-import javax.ws.rs.core.Response;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.NotAllowedException;
+import jakarta.ws.rs.core.Response;
 
 import io.quarkus.test.junit.QuarkusTest;
 
-import static javax.ws.rs.core.Response.Status.METHOD_NOT_ALLOWED;
+import static jakarta.ws.rs.core.Response.Status.METHOD_NOT_ALLOWED;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;

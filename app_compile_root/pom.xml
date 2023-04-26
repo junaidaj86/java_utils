@@ -204,56 +204,6 @@
                             </execution>
                         </executions>
                     </plugin>
-                    <plugin>
-                        <groupId>com.google.cloud.tools</groupId>
-                        <artifactId>jib-maven-plugin</artifactId>
-                        <configuration>
-                            <from>
-                                <image>${docker.base.image}</image>
-                            </from>
-                            <to>
-                                <image>${docker.native.image}:${project.version}
-                                </image>
-                            </to>
-                            <container>
-                                <appRoot>/dev/null</appRoot>
-                                <workingDirectory>/work</workingDirectory>
-                                <entrypoint>
-                                    <arg>/bin/bash</arg>
-                                    <arg>/docker-entrypoint.sh</arg>
-                                </entrypoint>
-                                <ports>
-                                    <port>8080</port>
-                                </ports>
-                                <user>1001:root</user>
-                            </container>
-                            <containerizingMode>packaged</containerizingMode>
-                            <extraDirectories>
-                                <paths>
-                                    <path>src/main/jib/</path>
-                                </paths>
-                                <permissions>
-                                    <permission>
-                                        <file>/docker-entrypoint.sh</file>
-                                        <mode>755</mode>
-                                    </permission>
-                                    <permission>
-                                        <file>/work/application</file>
-                                        <mode>755</mode>
-                                    </permission>
-                                </permissions>
-                            </extraDirectories>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <id>jib-build</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>${jib.goal}</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
                 </plugins>
             </build>
         </profile>

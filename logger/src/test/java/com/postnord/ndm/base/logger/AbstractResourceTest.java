@@ -3,7 +3,7 @@ package com.postnord.ndm.base.logger;
 import com.postnord.ndm.base.jwt_helper.JwtUtils;
 import lombok.SneakyThrows;
 
-import javax.json.Json;
+import jakarta.json.Json;
 import java.util.Map;
 import java.util.UUID;
 

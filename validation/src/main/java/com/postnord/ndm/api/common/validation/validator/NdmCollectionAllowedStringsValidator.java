@@ -5,8 +5,8 @@ import com.postnord.ndm.api.common.validation.constraints.NdmCollectionAllowedSt
 import java.util.Collection;
 import java.util.Set;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 public class NdmCollectionAllowedStringsValidator implements ConstraintValidator<NdmCollectionAllowedStrings, Collection<String>> {
 

@@ -6,12 +6,13 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
+import jakarta.inject.Singleton;
+import jakarta.json.Json;
+import jakarta.json.JsonObject;
+import jakarta.json.JsonPatch;
+
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
-import javax.inject.Singleton;
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonPatch;
 
 import static com.postnord.ndm.base.jsonb_utils.ConstantsHelper.HEADER;
 import static com.postnord.ndm.base.jsonb_utils.ConstantsHelper.HEADER_SIGNATURE;

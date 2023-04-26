@@ -11,13 +11,13 @@ import java.util.List;
 import cz.jirutka.rsql.parser.RSQLParser;
 import cz.jirutka.rsql.parser.RSQLParserException;
 
-import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
+import static jakarta.ws.rs.core.Response.Status.BAD_REQUEST;
 
 /**
  * Parse RSQL strings. See tests for examples.
  *
- * @param <T> The parser type (e.g. javax.persistence.criteria.Root<MyEntity>)
- * @param <R> The response type (e.g. javax.persistence.criteria.Predicate)
+ * @param <T> The parser type (e.g. jakarta.persistence.criteria.Root<MyEntity>)
+ * @param <R> The response type (e.g. jakarta.persistence.criteria.Predicate)
  */
 public class RsqlParser<T, R> {
     static final String INVALID_FILTER_MESSAGE = "Invalid search filter";
@@ -53,7 +53,7 @@ public class RsqlParser<T, R> {
     /**
      * Execute the parser. Throws APIException if RSQL string is invalid.
      *
-     * @return The parsed response (e.g. javax.persistence.criteria.Predicate)
+     * @return The parsed response (e.g. jakarta.persistence.criteria.Predicate)
      */
     @SuppressWarnings("PMD.PreserveStackTrace")
     public R execute() {

@@ -4,7 +4,7 @@ import com.postnord.ndm.base.common_utils.utils.InstantHelper;
 
 import java.time.Instant;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 import com.postnord.ndm.base.jpa_utils.utils.ConstantsHelper;
 import lombok.*;

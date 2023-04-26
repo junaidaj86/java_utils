@@ -3,7 +3,7 @@ package com.postnord.ndm.base.jsonb_utils;
 
 import com.postnord.ndm.base.common_utils.utils.OffsetDateTimeHelper;
 
-import javax.json.bind.adapter.JsonbAdapter;
+import jakarta.json.bind.adapter.JsonbAdapter;
 import java.time.OffsetDateTime;
 
 public class OffsetDateTimeAdapter implements JsonbAdapter<OffsetDateTime, String> {

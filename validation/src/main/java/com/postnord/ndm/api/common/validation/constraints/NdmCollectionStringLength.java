@@ -2,9 +2,9 @@ package com.postnord.ndm.api.common.validation.constraints;
 
 import com.postnord.ndm.api.common.validation.validator.NdmCollectionStringLengthValidator;
 
-import javax.validation.Constraint;
-import javax.validation.Payload;
-import javax.ws.rs.core.Response;
+import jakarta.validation.Constraint;
+import jakarta.validation.Payload;
+import jakarta.ws.rs.core.Response;
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;

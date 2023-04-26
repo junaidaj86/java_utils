@@ -1,7 +1,7 @@
 package com.postnord.ndm.base.jsonb_utils;
 
-import javax.inject.Singleton;
-import javax.json.bind.JsonbConfig;
+import jakarta.inject.Singleton;
+import jakarta.json.bind.JsonbConfig;
 
 import io.quarkus.jsonb.JsonbConfigCustomizer;
 

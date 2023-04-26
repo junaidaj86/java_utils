@@ -3,9 +3,9 @@ package com.postnord.ndm.api.common.validation.validator;
 import java.util.Iterator;
 import java.util.Set;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Path;
-import javax.validation.Validation;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Path;
+import jakarta.validation.Validation;
 
 public abstract class ModelValidator<T> {
 

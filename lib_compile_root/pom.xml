@@ -21,7 +21,7 @@
 
         <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
         <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
-        <quarkus.platform.version>2.16.6.Final</quarkus.platform.version>
+        <quarkus.platform.version>3.0.1.Final</quarkus.platform.version>
 
         <!-- Quartz version must be manually aligned with Quarkus version -->
         <quartz.version>2.3.2</quartz.version>
@@ -34,14 +34,14 @@
         <mockito.jupiter.version>5.1.1</mockito.jupiter.version>
         <mockito.core.version>5.1.1</mockito.core.version>
         <mockserver.jupiter.version>5.11.1</mockserver.jupiter.version>
-        <javax.el.version>3.0.1-b08</javax.el.version>
+        <jakarta.el.version>4.0.2</jakarta.el.version>
         <testcontainers.version>1.17.6</testcontainers.version>
         <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
-        <compiler-plugin.version>3.8.1</compiler-plugin.version>
+        <compiler-plugin.version>3.11.0</compiler-plugin.version>
         <maven.compiler.parameters>true</maven.compiler.parameters>
         <maven.compiler.release>17</maven.compiler.release>
         <build-helper.version>3.3.0</build-helper.version>
-        <surefire-plugin.version>3.0.0-M8</surefire-plugin.version>
+        <surefire-plugin.version>3.0.0</surefire-plugin.version>
         <jacoco.maven.plugin.version>0.8.8</jacoco.maven.plugin.version>
         <directory-maven-plugin.version>1.0</directory-maven-plugin.version>
         <maven-pmd-plugin.version>3.20.0</maven-pmd-plugin.version>
@@ -71,7 +71,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
             <dependency>
                 <groupId>io.quarkiverse.loggingjson</groupId>
                 <artifactId>quarkus-logging-json</artifactId>
@@ -126,8 +125,8 @@
             </dependency>
             <dependency>
                 <groupId>org.glassfish</groupId>
-                <artifactId>javax.el</artifactId>
-                <version>${javax.el.version}</version>
+                <artifactId>jakarta.el</artifactId>
+                <version>${jakarta.el.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>

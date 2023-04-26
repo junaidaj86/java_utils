@@ -5,10 +5,10 @@ import com.postnord.ndm.base.logger.util.LoggerHelper;
 import com.postnord.ndm.base.logger.util.PrivacyTagHelper;
 import org.junit.jupiter.api.Assertions;
 
-import javax.annotation.security.RolesAllowed;
-import javax.enterprise.context.RequestScoped;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
+import jakarta.annotation.security.RolesAllowed;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
 import java.util.Map;
 
 

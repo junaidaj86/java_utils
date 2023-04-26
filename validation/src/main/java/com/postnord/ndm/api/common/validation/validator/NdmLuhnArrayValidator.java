@@ -2,8 +2,8 @@ package com.postnord.ndm.api.common.validation.validator;
 
 import com.postnord.ndm.api.common.validation.constraints.NdmLuhnArray;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 public class NdmLuhnArrayValidator implements ConstraintValidator<NdmLuhnArray, String[]> {
 

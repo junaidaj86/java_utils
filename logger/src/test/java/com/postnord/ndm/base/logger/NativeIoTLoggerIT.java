@@ -1,8 +1,8 @@
 package com.postnord.ndm.base.logger;
 
 
-import io.quarkus.test.junit.NativeImageTest;
+import io.quarkus.test.junit.QuarkusIntegrationTest;
 
-@NativeImageTest
+@QuarkusIntegrationTest
 public class NativeIoTLoggerIT extends NdmLoggerTest {
 }

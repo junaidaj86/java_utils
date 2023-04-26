@@ -53,7 +53,6 @@
         <module>jsonb_utils</module>
         <module>jwt_handler</module>
         <module>jwt_helper</module>
-        <module>jwt_rest_mapper</module>
         <module>jpa_utils</module>
         <module>jpa_utils_reactive</module>
         <module>rsql_parser</module>
@@ -61,7 +60,6 @@
         <module>scrolling</module>
         <module>test_utils</module>
         <module>validation</module>
-        <module>rest_utils</module>
         <module>chassis</module>
     </modules>
 </project>

@@ -5,7 +5,7 @@ import com.postnord.ndm.base.jwt_handler.model.AccountRolesMapping;
 import io.quarkus.arc.DefaultBean;
 import io.smallrye.mutiny.Uni;
 
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 import java.util.Collections;
 import java.util.List;
 

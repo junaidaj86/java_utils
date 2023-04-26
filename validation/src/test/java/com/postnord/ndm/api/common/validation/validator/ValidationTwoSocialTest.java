@@ -4,10 +4,10 @@ import com.postnord.ndm.api.common.validation.constraints.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.constraints.Size;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+import jakarta.validation.constraints.Size;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /*
 Sociable unit test : This class will collaborate with its dependencies and will NOT mock them. It will use
-the real collaborator javax.validation.Validator as part of its test scope.
+the real collaborator jakarta.validation.Validator as part of its test scope.
  */
 @SuppressWarnings({"CPD-START"})
  class ValidationTwoSocialTest {

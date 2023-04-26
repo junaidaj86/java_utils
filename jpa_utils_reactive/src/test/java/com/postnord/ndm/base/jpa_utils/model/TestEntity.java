@@ -1,6 +1,6 @@
 package com.postnord.ndm.base.jpa_utils.model;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 import lombok.*;
 

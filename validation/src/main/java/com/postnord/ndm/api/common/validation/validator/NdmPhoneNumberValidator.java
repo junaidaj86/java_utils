@@ -2,8 +2,8 @@ package com.postnord.ndm.api.common.validation.validator;
 
 import com.postnord.ndm.api.common.validation.constraints.NdmPhoneNumber;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 /**
  * Validates that phone number is a valid international or national phone number according to ITU-T E.123 and E.164. By default phone number

@@ -9,14 +9,14 @@ import org.jboss.resteasy.reactive.server.ServerExceptionMapper;
 
 import java.net.URI;
 
-import javax.enterprise.inject.Instance;
-import javax.inject.Inject;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.ext.Provider;
+import jakarta.enterprise.inject.Instance;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.ext.Provider;
 
 import io.quarkus.security.ForbiddenException;
 
-import static javax.ws.rs.core.Response.Status.FORBIDDEN;
+import static jakarta.ws.rs.core.Response.Status.FORBIDDEN;
 
 @Provider
 @SuppressWarnings("PMD.GuardLogStatement")

@@ -11,12 +11,12 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import javax.json.JsonArray;
-import javax.json.JsonMergePatch;
-import javax.json.JsonObject;
-import javax.json.JsonValue;
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.json.JsonArray;
+import jakarta.json.JsonMergePatch;
+import jakarta.json.JsonObject;
+import jakarta.json.JsonValue;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 public class NdmJsonMergePatchValidator implements ConstraintValidator<NdmJsonMergePatch, JsonMergePatch> {
 

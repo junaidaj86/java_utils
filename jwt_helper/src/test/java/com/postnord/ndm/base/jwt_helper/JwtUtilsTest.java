@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.json.Json;
+import jakarta.json.Json;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;

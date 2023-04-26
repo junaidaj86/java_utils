@@ -16,11 +16,11 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import javax.json.JsonMergePatch;
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.constraints.Size;
+import jakarta.json.JsonMergePatch;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+import jakarta.validation.constraints.Size;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -28,7 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /*
 Sociable unit test : This class will collaborate with its dependencies and will NOT mock them. It will use
-the real collaborator javax.validation.Validator as part of its test scope.
+the real collaborator jakarta.validation.Validator as part of its test scope.
  */
 @SuppressWarnings({"CPD-START"})
 class ValidationOneSocialTest {

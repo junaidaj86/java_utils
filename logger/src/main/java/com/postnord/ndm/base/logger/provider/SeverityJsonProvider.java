@@ -5,7 +5,7 @@ import org.jboss.logmanager.ExtLogRecord;
 import java.io.IOException;
 import java.util.logging.Level;
 
-import javax.inject.Singleton;
+import jakarta.inject.Singleton;
 
 import io.quarkiverse.loggingjson.JsonGenerator;
 import io.quarkiverse.loggingjson.JsonProvider;

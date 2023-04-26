@@ -1,20 +1,22 @@
 package com.postnord.ndm.base.jwt_handler.identity;
 
 import com.postnord.ndm.base.jwt_handler.model.AccountInfo;
-import io.quarkus.arc.AlternativePriority;
 import io.quarkus.arc.Unremovable;
 import io.quarkus.security.runtime.SecurityIdentityAssociation;
 import io.quarkus.security.runtime.SecurityIdentityProxy;
+import jakarta.annotation.Priority;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.enterprise.inject.Alternative;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.Priorities;
 
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
-import javax.ws.rs.Priorities;
 import java.util.Collections;
 import java.util.Set;
 
 @Unremovable
 @RequestScoped
-@AlternativePriority(Priorities.USER + 1)
+@Alternative()
+@Priority(Priorities.USER + 1)
 public class IotaSecurityIdentityProxy extends SecurityIdentityProxy {
 
     @Inject

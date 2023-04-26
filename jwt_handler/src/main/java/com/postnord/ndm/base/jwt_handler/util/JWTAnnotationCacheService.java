@@ -2,10 +2,10 @@ package com.postnord.ndm.base.jwt_handler.util;
 
 import io.quarkus.cache.CacheResult;
 
-import javax.annotation.security.DenyAll;
-import javax.annotation.security.PermitAll;
-import javax.annotation.security.RolesAllowed;
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.annotation.security.DenyAll;
+import jakarta.annotation.security.PermitAll;
+import jakarta.annotation.security.RolesAllowed;
+import jakarta.enterprise.context.ApplicationScoped;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.List;

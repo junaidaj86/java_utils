@@ -3,12 +3,12 @@ package com.postnord.ndm.base.jsonb_utils;
 
 import com.postnord.ndm.api.common.exception.APIException;
 
-import javax.json.bind.adapter.JsonbAdapter;
+import jakarta.json.bind.adapter.JsonbAdapter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
+import static jakarta.ws.rs.core.Response.Status.BAD_REQUEST;
 
 public class LocalDateAdapter implements JsonbAdapter<LocalDate, String> {
     private static final String SUPPORTED_DATE_FORMATS = "Supported date formats include the ISO-8601 extended date format.";

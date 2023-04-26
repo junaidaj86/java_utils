@@ -1,6 +1,6 @@
 package com.postnord.ndm.base.logger.util;
 
-import javax.enterprise.context.RequestScoped;
+import jakarta.enterprise.context.RequestScoped;
 
 import io.quarkus.arc.Unremovable;
 import lombok.Data;

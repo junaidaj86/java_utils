@@ -4,8 +4,8 @@ import com.postnord.ndm.api.common.validation.constraints.NdmCollectionSize;
 
 import java.util.Collection;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 public class NdmCollectionSizeValidator implements ConstraintValidator<NdmCollectionSize, Collection> {
 

@@ -8,8 +8,8 @@ import java.util.Objects;
 import java.util.function.BiConsumer;
 import java.util.stream.Stream;
 
-import javax.enterprise.context.ContextNotActiveException;
-import javax.enterprise.inject.spi.CDI;
+import jakarta.enterprise.context.ContextNotActiveException;
+import jakarta.enterprise.inject.spi.CDI;
 
 import static io.quarkiverse.loggingjson.providers.KeyValueStructuredArgument.kv;
 

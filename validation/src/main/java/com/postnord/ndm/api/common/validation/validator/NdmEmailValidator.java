@@ -2,8 +2,8 @@ package com.postnord.ndm.api.common.validation.validator;
 
 import com.postnord.ndm.api.common.validation.constraints.NdmEmail;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 public class NdmEmailValidator implements ConstraintValidator<NdmEmail, String> {
 

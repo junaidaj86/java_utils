@@ -2,7 +2,7 @@ package com.postnord.ndm.base.jwt_handler.model;
 
 import io.quarkus.arc.Unremovable;
 
-import javax.enterprise.context.RequestScoped;
+import jakarta.enterprise.context.RequestScoped;
 import java.util.Collections;
 import java.util.Objects;
 import java.util.Set;

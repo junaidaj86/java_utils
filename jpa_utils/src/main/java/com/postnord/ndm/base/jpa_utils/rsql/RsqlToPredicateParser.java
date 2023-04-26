@@ -2,9 +2,9 @@ package com.postnord.ndm.base.jpa_utils.rsql;
 
 import com.postnord.ndm.base.rsql_parser.RsqlParser;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 
 /**
  * Build JPA criteria predicates from RSQL strings. See tests for examples.

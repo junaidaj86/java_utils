@@ -24,7 +24,7 @@ import static com.postnord.ndm.base.rsql_parser.RsqlTestDataHelper.STRING_FIELD_
 import static com.postnord.ndm.base.rsql_parser.RsqlTestDataHelper.STRING_FIELD_2;
 import static com.postnord.ndm.base.rsql_parser.RsqlTestDataHelper.STRING_VALUE_1;
 import static com.postnord.ndm.base.rsql_parser.RsqlTestDataHelper.STRING_VALUE_2;
-import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
+import static jakarta.ws.rs.core.Response.Status.BAD_REQUEST;
 
 @SuppressWarnings("PMD.TooManyStaticImports")
 class RsqlParserTest {

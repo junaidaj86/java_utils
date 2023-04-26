@@ -7,16 +7,16 @@ import org.junit.jupiter.api.Test;
 
 import java.net.URI;
 
-import javax.inject.Inject;
-import javax.json.bind.JsonbException;
-import javax.json.stream.JsonParsingException;
-import javax.ws.rs.ProcessingException;
-import javax.ws.rs.core.Response;
+import jakarta.inject.Inject;
+import jakarta.json.bind.JsonbException;
+import jakarta.json.stream.JsonParsingException;
+import jakarta.ws.rs.ProcessingException;
+import jakarta.ws.rs.core.Response;
 
 import io.quarkus.test.junit.QuarkusTest;
 
-import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
-import static javax.ws.rs.core.Response.Status.INTERNAL_SERVER_ERROR;
+import static jakarta.ws.rs.core.Response.Status.BAD_REQUEST;
+import static jakarta.ws.rs.core.Response.Status.INTERNAL_SERVER_ERROR;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @QuarkusTest

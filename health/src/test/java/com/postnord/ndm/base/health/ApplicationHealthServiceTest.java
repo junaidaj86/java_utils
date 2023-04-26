@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 
 import io.quarkus.test.junit.QuarkusTest;
-import io.restassured.mapper.ObjectMapperType;
 
 import static io.restassured.RestAssured.given;
 
@@ -28,14 +27,15 @@ class ApplicationHealthServiceTest {
                 .get("/q/health")
                 .then()
                 .statusCode(200)
-                .extract().as(Map.class, ObjectMapperType.JSONB);
+                .extract()
+                .as(Map.class);
 
         LOGGER.debug("/health endpoint replied with: {}", result);
         Assertions.assertNotNull(result);
         Assertions.assertEquals(UP, result.get(STATUS), "Application overall status is " + result.get(STATUS));
         //noinspection unchecked
         final List<Map<?, ?>> checks = (List<Map<?, ?>>) result.get(CHECKS);
-        Assertions.assertEquals(3, checks.size());
+        Assertions.assertEquals(2, checks.size());
         for (final Map<?, ?> check : checks) {
             Assertions.assertEquals(UP, check.get(STATUS), "'" + check.get(NAME) + "' check is " + check.get(STATUS));
         }

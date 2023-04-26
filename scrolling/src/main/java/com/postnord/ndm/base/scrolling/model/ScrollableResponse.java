@@ -1,6 +1,6 @@
 package com.postnord.ndm.base.scrolling.model;
 
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response;
 
 import lombok.Builder;
 import lombok.NonNull;

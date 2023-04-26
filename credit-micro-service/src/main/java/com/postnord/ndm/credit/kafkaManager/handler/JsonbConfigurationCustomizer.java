@@ -2,8 +2,8 @@ package com.postnord.ndm.credit.kafkaManager.handler;
 
 import io.quarkus.jsonb.JsonbConfigCustomizer;
 
-import javax.inject.Singleton;
-import javax.json.bind.JsonbConfig;
+import jakarta.inject.Singleton;
+import jakarta.json.bind.JsonbConfig;
 
 
 @Singleton

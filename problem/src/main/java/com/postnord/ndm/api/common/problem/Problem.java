@@ -1,22 +1,12 @@
 package com.postnord.ndm.api.common.problem;
 
-import java.net.URI;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
-
-import javax.json.bind.annotation.JsonbProperty;
-import javax.json.bind.annotation.JsonbTransient;
-
-import lombok.Builder;
+import jakarta.json.bind.annotation.JsonbProperty;
+import jakarta.json.bind.annotation.JsonbTransient;
+import lombok.*;
 import lombok.Builder.Default;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.Singular;
-import lombok.ToString;
+
+import java.net.URI;
+import java.util.*;
 
 @ToString
 @Builder(buildMethodName = "buildInternal")

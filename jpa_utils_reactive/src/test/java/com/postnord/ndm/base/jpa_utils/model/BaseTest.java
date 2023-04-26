@@ -4,7 +4,7 @@ import org.hibernate.reactive.mutiny.Mutiny;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 import io.vertx.mutiny.core.Vertx;
 

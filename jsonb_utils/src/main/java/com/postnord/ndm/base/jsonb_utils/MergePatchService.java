@@ -1,8 +1,8 @@
 package com.postnord.ndm.base.jsonb_utils;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.json.JsonMergePatch;
-import javax.validation.Valid;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.json.JsonMergePatch;
+import jakarta.validation.Valid;
 
 @ApplicationScoped
 public class MergePatchService {

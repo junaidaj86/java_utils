@@ -3,15 +3,15 @@ package com.postnord.ndm.api.common.exception;
 
 import java.util.Set;
 
-import javax.enterprise.context.RequestScoped;
-import javax.validation.*;
-import javax.validation.constraints.NotNull;
-import javax.ws.rs.Path;
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.validation.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 
-import static javax.ws.rs.core.Response.Status.UNSUPPORTED_MEDIA_TYPE;
+import static jakarta.ws.rs.core.Response.Status.UNSUPPORTED_MEDIA_TYPE;
 
 
 @RequestScoped

@@ -3,8 +3,8 @@ package com.postnord.ndm.base.jpa_utils.utils;
 import com.postnord.ndm.base.jwt_handler.model.AllowedAccounts;
 import com.postnord.ndm.base.rsql_parser.RsqlGenerator;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import java.util.*;
 
 @ApplicationScoped

@@ -1,9 +1,8 @@
 package com.postnord.ndm.base.jsonb_utils;
 
-import org.glassfish.json.JsonMergePatchImpl;
-
-import javax.json.JsonValue;
-import javax.json.bind.adapter.JsonbAdapter;
+import jakarta.json.JsonValue;
+import jakarta.json.bind.adapter.JsonbAdapter;
+import org.eclipse.parsson.JsonMergePatchImpl;
 
 public class JsonMergePatchAdapter implements JsonbAdapter<JsonMergePatchImpl, JsonValue> {
     @Override

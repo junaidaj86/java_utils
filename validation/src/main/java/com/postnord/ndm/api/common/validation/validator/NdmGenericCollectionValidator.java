@@ -5,8 +5,8 @@ import com.postnord.ndm.api.common.validation.constraints.NdmGenericCollection;
 import java.util.Collection;
 import java.util.Objects;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 public class NdmGenericCollectionValidator implements ConstraintValidator<NdmGenericCollection, Collection<?>> {
 

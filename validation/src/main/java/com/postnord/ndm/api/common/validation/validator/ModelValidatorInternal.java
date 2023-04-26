@@ -3,7 +3,7 @@ package com.postnord.ndm.api.common.validation.validator;
 
 import com.postnord.ndm.api.common.exception.APIException;
 
-import static javax.ws.rs.core.Response.Status.INTERNAL_SERVER_ERROR;
+import static jakarta.ws.rs.core.Response.Status.INTERNAL_SERVER_ERROR;
 
 public class ModelValidatorInternal<T> extends ModelValidator<T> {
 
