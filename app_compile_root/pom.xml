@@ -251,7 +251,7 @@
                                     <addCompileSourceRoot>true</addCompileSourceRoot>
                                     <configOptions>
                                         <library>quarkus</library>
-                                        <serializationLibrary>jsonb</serializationLibrary>
+                                        <useJakartaEe>true</useJakartaEe>
                                         <additionalModelTypeAnnotations>
                                             @io.quarkus.runtime.annotations.RegisterForReflection
                                         </additionalModelTypeAnnotations>
