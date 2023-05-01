@@ -264,6 +264,7 @@
                                 </goals>
                                 <configuration>
                                     <systemPropertyVariables>
+                                        <quarkus.native.native-image-xmx>8g</quarkus.native.native-image-xmx>
                                         <native.image.path>${project.build.directory}/${project.build.finalName}-runner</native.image.path>
                                     </systemPropertyVariables>
                                 </configuration>
