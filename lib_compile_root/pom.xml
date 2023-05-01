@@ -27,7 +27,7 @@
         <quartz.version>2.3.2</quartz.version>
         <!-- Quarkiverse json-logging version must be manually aligned with Quarkus version.
         https://github.com/quarkiverse/quarkus-logging-json -->
-        <quarkiverse.json-logging.version>2.0.0</quarkiverse.json-logging.version>
+        <quarkiverse.json-logging.version>3.0.0</quarkiverse.json-logging.version>
         <lombok.version>1.18.26</lombok.version>
         <rsql-parser.version>2.1.0</rsql-parser.version>
         <junit.jupiter.version>5.9.2</junit.jupiter.version>
