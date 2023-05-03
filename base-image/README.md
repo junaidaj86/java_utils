@@ -24,10 +24,15 @@
 
     docker build -f Dockerfile-11 -t ndm/java11-maven-base .
     docker tag ndm/java11-maven-base:latest public.ecr.aws/a1t5b6y5/ndm/java11-maven-base:latest
+    
     docker push public.ecr.aws/a1t5b6y5/ndm/java11-maven-base:latest
 
-## Build manually openjdk17-jre-headless-maven-3.9.0
+## Build manually openjdk17-jre-headless-maven-3.8.5
 
     docker build -f Dockerfile-17 -t ndm/java17-maven-base .
     docker tag ndm/java17-maven-base:latest public.ecr.aws/a1t5b6y5/ndm/java17-maven-base:latest
     docker push public.ecr.aws/a1t5b6y5/ndm/java17-maven-base:latest
+
+    docker build -f Dockerfile-17-graalvm -t ndm/java17-graalvm-maven-base .    
+    docker tag ndm/java17-graalvm-maven-base:latest public.ecr.aws/a1t5b6y5/ndm/java17-graalvm-maven-base:latest
+    docker push public.ecr.aws/a1t5b6y5/ndm/java17-graalvm-maven-base:latest

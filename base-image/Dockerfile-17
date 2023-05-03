@@ -1,7 +1,8 @@
 FROM maven:3.8.5-openjdk-17
 
 # Install unzip
-RUN apt-get update && apt-get install -y --no-install-recommends zip unzip
+# Install unzip
+RUN microdnf install zip unzip -y
 
 # Install aws-cli
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
