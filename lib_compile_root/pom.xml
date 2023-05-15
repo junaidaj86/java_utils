@@ -54,6 +54,8 @@
         <greenmail.version>1.6.13</greenmail.version>
         <jsonschema-generator.version>4.28.0</jsonschema-generator.version>
         <sonar.sources>${sonar.sources.base}</sonar.sources>
+        <google.java.format>1.15.0</google.java.format>
+        <spotless.version>2.27.2</spotless.version>
     </properties>
 
     <dependencyManagement>
@@ -166,6 +168,41 @@
     <build>
         <pluginManagement>
             <plugins>
+                <plugin>
+                    <groupId>com.diffplug.spotless</groupId>
+                    <artifactId>spotless-maven-plugin</artifactId>
+                    <version>${spotless.version}</version>
+                    <configuration>
+                        <ratchetFrom>origin/master</ratchetFrom>
+                        <formats>
+                            <!-- you can define as many formats as you want, each is independent -->
+                            <format>
+                                <!-- define the files to apply to -->
+                                <includes>
+                                    <include>.robot</include>
+                                    <include>.xml</include>
+                                    <include>.yaml</include>
+                                    <include>.yml</include>
+                                </includes>
+                                <!-- define the steps to apply to those files -->
+                                <trimTrailingWhitespace/>
+                                <endWithNewline/>
+                                <indent>
+                                    <tabs>true</tabs>
+                                    <spacesPerTab>4</spacesPerTab>
+                                </indent>
+                            </format>
+                        </formats>
+                        <java>
+                            <googleJavaFormat>
+                                <version>${google.java.format}</version>
+                                <style>AOSP</style>
+                                <reflowLongStrings>true</reflowLongStrings>
+                                <groupArtifact>com.google.googlejavaformat:google-java-format</groupArtifact>
+                            </googleJavaFormat>
+                        </java>
+                    </configuration>
+                </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-resources-plugin</artifactId>
