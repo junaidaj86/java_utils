@@ -18,7 +18,7 @@
 
     <repositories>
         <repository>
-            <id>common-libs</id>
+            <id>ndm-evolutionary</id>
             <url>https://pkgs.dev.azure.com/ndm-evolutionary/_packaging/ndm-evolutionary/maven/v1
             </url>
             <releases>

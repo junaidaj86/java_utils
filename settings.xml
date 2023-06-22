@@ -4,7 +4,7 @@
                               https://maven.apache.org/xsd/settings-1.0.0.xsd">
     <servers>
         <server>
-            <id>common-libs</id>
+            <id>ndm-evolutionary</id>
             <username>ndm-evolutionary</username>
             <password>${env.ARTIFACTORY_TOKEN}</password>
         </server>
@@ -13,12 +13,12 @@
         <mirror>
             <id>central</id>
             <url>https://repo.maven.apache.org/maven2/</url>
-            <mirrorOf>!common-libs</mirrorOf>
+            <mirrorOf>!ndm-evolutionary</mirrorOf>
         </mirror>
         <mirror>
-            <id>common-libs</id>
-            <url>https://pkgs.dev.azure.com/JenkinsPipelinesArtifacts/ndm-evolutionary/_packaging/common-libs/maven/v1</url>
-            <mirrorOf>common-libs,!*</mirrorOf>
+            <id>ndm-evolutionary</id>
+            <url>https://pkgs.dev.azure.com/ndm-evolutionary/_packaging/ndm-evolutionary/maven/v1</url>
+            <mirrorOf>ndm-evolutionary,!*</mirrorOf>
         </mirror>
     </mirrors>
 </settings>
