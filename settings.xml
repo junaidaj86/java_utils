@@ -5,7 +5,7 @@
     <servers>
         <server>
             <id>common-libs</id>
-            <username>JenkinsPipelinesArtifacts</username>
+            <username>ndm-evolutionary</username>
             <password>${env.ARTIFACTORY_TOKEN}</password>
         </server>
     </servers>
