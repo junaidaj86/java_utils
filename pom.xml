@@ -14,7 +14,7 @@
     <distributionManagement>
         <repository>
             <id>common-libs</id>
-            <url>https://pkgs.dev.azure.com/JenkinsPipelinesArtifacts/ndm-evolutionary/_packaging/common-libs/maven/v1
+            <url>https://pkgs.dev.azure.com/ndm-evolutionary/_packaging/ndm-evolutionary/maven/v1
             </url>
             <releases>
                 <enabled>true</enabled>
@@ -27,7 +27,7 @@
     <repositories>
         <repository>
             <id>common-libs</id>
-            <url>https://pkgs.dev.azure.com/JenkinsPipelinesArtifacts/ndm-evolutionary/_packaging/common-libs/maven/v1
+            <url>https://pkgs.dev.azure.com/ndm-evolutionary/_packaging/ndm-evolutionary/maven/v1
             </url>
             <releases>
                 <enabled>true</enabled>
