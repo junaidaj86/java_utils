@@ -18,6 +18,6 @@ public class JsonMergePatchAdapter implements JsonbAdapter<JsonMergePatchImpl, J
         if (jsonValue == null) {
             return null;
         }
-        return new JsonMergePatchImpl(jsonValue);
+        return new JsonMergePatchImpl(jsonValue, null);
     }
 }
