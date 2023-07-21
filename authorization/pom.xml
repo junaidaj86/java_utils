@@ -13,7 +13,7 @@
 
     <artifactId>authorization</artifactId>
 
-    <name>Exception: Common Authorization Handling For NDM API's</name>
+    <name>Authorization: Common Authorization Handling For NDM API's</name>
     <description>
         This library contains common authorization for REST based API's.
     </description>
