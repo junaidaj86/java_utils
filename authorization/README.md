@@ -32,6 +32,8 @@ In application.yaml file below lines need to be added.
 
 ```yaml
 quarkus:
+  smallrye-jwt:
+    enabled: false
   index-dependency:
     authorization:
       group-id: com.postnord.ndm.base
