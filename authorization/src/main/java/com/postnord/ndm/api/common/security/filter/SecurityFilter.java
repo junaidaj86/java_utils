@@ -125,8 +125,11 @@ public class SecurityFilter implements ContainerRequestFilter {
                     .getJsonNumber(claims[1].trim())
                     .longValue();
 
-            final var upn = tokenInstance
-                    .getString(claims[2].trim());
+            String upn = "upn";
+            if (tokenInstance.containsKey(claims[2].trim())) {
+                upn = tokenInstance
+                        .getString(claims[2].trim());
+            }
 
             return NdmSecurityContext
                     .builder()
