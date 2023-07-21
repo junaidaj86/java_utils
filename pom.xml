@@ -48,6 +48,7 @@
         <module>app_compile_root</module>
         <module>common_utils</module>
         <module>exception</module>
+        <module>authorization</module>
         <module>health</module>
         <module>logger</module>
         <module>jsonb_utils</module>
