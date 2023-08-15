@@ -2,6 +2,7 @@ package com.postnord.ndm.api.common.security.filter;
 
 import com.postnord.ndm.api.common.problem.Problem;
 import com.postnord.ndm.api.common.problem.ProblemResponse;
+import com.postnord.ndm.api.common.security.context.AllowedRoles;
 import com.postnord.ndm.api.common.security.context.NdmSecurityContext;
 
 import org.eclipse.microprofile.config.ConfigProvider;
@@ -23,17 +24,25 @@ import jakarta.json.JsonString;
 import jakarta.ws.rs.container.ContainerRequestContext;
 import jakarta.ws.rs.container.ContainerRequestFilter;
 import jakarta.ws.rs.container.PreMatching;
+import jakarta.ws.rs.container.ResourceInfo;
+import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.HttpHeaders;
 import jakarta.ws.rs.core.SecurityContext;
 import jakarta.ws.rs.ext.Provider;
 
 import static com.postnord.ndm.api.common.security.util.ConstantsHelper.BEARER_RESERVED_WORD;
 import static com.postnord.ndm.api.common.security.util.ConstantsHelper.UTC_ZONE;
+import static jakarta.ws.rs.core.Response.Status.FORBIDDEN;
 import static jakarta.ws.rs.core.Response.Status.UNAUTHORIZED;
 
 @Provider
 @PreMatching
+@SuppressWarnings({"PMD.ExcessiveImports", "PMD.UnnecessaryFullyQualifiedName"})
 public class SecurityFilter implements ContainerRequestFilter {
+
+    @Context
+    ResourceInfo resourceInfo;
+    AllowedRoles annotation;
 
     @Override
     public void filter(final ContainerRequestContext containerRequestContext) throws IOException {
@@ -67,6 +76,18 @@ public class SecurityFilter implements ContainerRequestFilter {
                         .build());
             }
 
+            if (!getAnnotation().roleKey().trim().isBlank()) {
+                containerRequestContext.abortWith(ProblemResponse.builder()
+                        .problem(Problem
+                                .builder()
+                                .type(URI.create("https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.4"))
+                                .title(FORBIDDEN.getReasonPhrase())
+                                .status(FORBIDDEN.getStatusCode())
+                                .detail("This functionality is prohibited")
+                                .build())
+                        .build());
+            }
+
             final SecurityContext currentSecurityContext = containerRequestContext.getSecurityContext();
 
             containerRequestContext.setSecurityContext(new SecurityContext() {
@@ -77,7 +98,7 @@ public class SecurityFilter implements ContainerRequestFilter {
 
                 @Override
                 public boolean isUserInRole(final String role) {
-                    final var currentTokenRoles = Arrays.asList(ConfigProvider.getConfig().getValue("ndm_jwt.roles-allowed", String[].class));
+                    final var currentTokenRoles = Arrays.asList(ConfigProvider.getConfig().getValue(getAnnotation().roleKey().trim(), String[].class));
                     return ndmSecurityContext.getRoles().stream().anyMatch(currentTokenRoles::contains);
                 }
 
@@ -93,6 +114,14 @@ public class SecurityFilter implements ContainerRequestFilter {
             });
 
         }
+    }
+
+    private AllowedRoles getAnnotation() {
+        if (Objects.isNull(annotation)) {
+            annotation = resourceInfo.getResourceMethod()
+                    .getAnnotation(com.postnord.ndm.api.common.security.context.AllowedRoles.class);
+        }
+        return annotation;
     }
 
     private long maxAge(final long tokenExpires) {
@@ -140,4 +169,5 @@ public class SecurityFilter implements ContainerRequestFilter {
         }
 
     }
+
 }
