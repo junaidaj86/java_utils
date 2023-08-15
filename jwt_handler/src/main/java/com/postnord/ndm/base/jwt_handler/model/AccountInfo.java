@@ -2,6 +2,7 @@ package com.postnord.ndm.base.jwt_handler.model;
 
 import java.util.Objects;
 
+@SuppressWarnings("PMD.OverrideBothEqualsAndHashcode")
 public record AccountInfo(String id, boolean superUser) {
 
     @Override
