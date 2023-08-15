@@ -19,11 +19,12 @@ import java.util.Base64;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import jakarta.annotation.Priority;
 import jakarta.json.Json;
 import jakarta.json.JsonString;
+import jakarta.ws.rs.Priorities;
 import jakarta.ws.rs.container.ContainerRequestContext;
 import jakarta.ws.rs.container.ContainerRequestFilter;
-import jakarta.ws.rs.container.PreMatching;
 import jakarta.ws.rs.container.ResourceInfo;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.HttpHeaders;
@@ -36,7 +37,7 @@ import static jakarta.ws.rs.core.Response.Status.FORBIDDEN;
 import static jakarta.ws.rs.core.Response.Status.UNAUTHORIZED;
 
 @Provider
-@PreMatching
+@Priority(Priorities.AUTHENTICATION)
 @SuppressWarnings({"PMD.ExcessiveImports", "PMD.UnnecessaryFullyQualifiedName"})
 public class SecurityFilter implements ContainerRequestFilter {
 
@@ -76,7 +77,7 @@ public class SecurityFilter implements ContainerRequestFilter {
                         .build());
             }
 
-            if (!getAnnotation().roleKey().trim().isBlank()) {
+            if (getAnnotation().roleKey().trim().isBlank()) {
                 containerRequestContext.abortWith(ProblemResponse.builder()
                         .problem(Problem
                                 .builder()
@@ -89,7 +90,6 @@ public class SecurityFilter implements ContainerRequestFilter {
             }
 
             final SecurityContext currentSecurityContext = containerRequestContext.getSecurityContext();
-
             containerRequestContext.setSecurityContext(new SecurityContext() {
                 @Override
                 public Principal getUserPrincipal() {
